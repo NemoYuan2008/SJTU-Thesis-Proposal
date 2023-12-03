@@ -1,4 +1,4 @@
-\documentclass[zihao=-4,a4paper]{ctexart}
+\documentclass[zihao=-4,a4paper,fontset=fandol]{ctexart}
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage[T1]{fontenc}
@@ -7,6 +7,7 @@
 \usepackage{calc}
 \usepackage{graphicx}
 \usepackage{tabularx}
+\usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{tikz}
 \usepackage{zhlipsum}
@@ -65,16 +66,16 @@
     \renewcommand{\arraystretch}{1.7}
     \zihao{-4}
     \begin{tabularx}{15cm}{lX}
-        \bfseries {\zihao{4}学号}~~Student ID       & 012345678912                     \\
-        \bfseries {\zihao{4}姓名}~~Name             & 交通大学                              \\
-        \bfseries {\zihao{4}学生类别}~~Degree Program & 学术型博士生 Academic Doctoral Student \\
-        \bfseries {\zihao{4}学习形式}~~Study Mode     & 全日制 Full-time                    \\
-        \bfseries {\zihao{4}导师}~~Supervisor(s)    &                                  \\
-        \bfseries {\zihao{4}论文题目}~~Thesis title   &                                  \\
-        \bfseries {\zihao{4}学院}~~School           &                                  \\
-        \bfseries {\zihao{4}专业}~~Major            &                                  \\
-        \bfseries {\zihao{4}开题日期}~~Date            &                                  \\
-        \bfseries {\zihao{4}开题地点}~~Venue          &                                  \\
+        \bfseries {\zihao{4}学号}~~Student ID       & \uline{012345678912 \hfill}                     \\
+        \bfseries {\zihao{4}姓名}~~Name             & \uline{交通大学 \hfill}                             \\
+        \bfseries {\zihao{4}学生类别}~~Degree Program & \uline{学术型博士生 Academic Doctoral Student \hfill} \\
+        \bfseries {\zihao{4}学习形式}~~Study Mode     & \uline{全日制 Full-time \hfill}                    \\
+        \bfseries {\zihao{4}导师}~~Supervisor(s)    & \uline{我的导师 \hfill}                             \\
+        \bfseries {\zihao{4}论文题目}~~Thesis title   & \uline{我的论文题目 \hfill}                           \\
+        \bfseries {\zihao{4}学院}~~School           & \uline{我的学院 \hfill}                             \\
+        \bfseries {\zihao{4}专业}~~Major            & \uline{我的专业 \hfill}                             \\
+        \bfseries {\zihao{4}开题日期}~~Date           & \uline{202Y-MM-DD \hfill}                       \\
+        \bfseries {\zihao{4}开题地点}~~Venue          & \uline{会议室 \hfill}                              \\
     \end{tabularx}
 \end{table}
 

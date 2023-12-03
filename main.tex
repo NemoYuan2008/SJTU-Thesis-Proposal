@@ -1,0 +1,226 @@
+\documentclass[zihao=-4,a4paper]{ctexart}
+
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\renewcommand{\rmdefault}{ptm}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{tikz}
+\usepackage{zhlipsum}
+\usepackage{biblatex} % 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
+\addbibresource{ref.bib}
+\usepackage[hidelinks]{hyperref}
+
+
+\linespread{1.25}
+\setlength{\parskip}{6pt}
+% \setenumerate[1]{itemsep=6pt}
+
+
+% 也可以用 wasysym 等宏包
+\newcommand{\myunchecked}{\tikz\draw (0,0) rectangle (12pt,12pt);}
+\newcommand{\mychecked}{\tikz{
+    \draw (-5.5pt,5pt) -- (-3.46pt,6pt); 
+    \draw[thick] (-3.46pt,6pt) -- (0,0);
+    \draw (0,0) -- (6.92pt,12pt);
+}}
+
+\newcounter{field}
+
+% TODO: field里应该是仿宋粗体，不是宋体粗体
+% TODO: 用 minipage 实现悬挂缩进感觉有点脏，这个宽度计算也有点脏
+\newenvironment{field}
+    {\vspace{12pt}\bfseries\noindent\stepcounter{field}\thefield 、\begin{minipage}[t]{\linewidth-24pt}}
+    {\end{minipage}\vspace{12pt}}
+
+% TODO: content 环境里的行距与word有出入，要进一步调整
+% TODO: content 环境里段前段后间距检查一下
+\newenvironment{content}{\kaishu}{}
+
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{figures/sjtu-logo.png}
+\end{figure}
+
+
+\begin{center}
+    {\zihao{1}\songti\bfseries 研究生学位论文开题报告}\\~\\
+    {\zihao{-3}\bfseries Graduate Thesis/Dissertation Proposal}
+\end{center}
+
+
+% TODO: 左栏中文应该是楷体粗体
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.7}
+    \zihao{-4}
+    \begin{tabularx}{15cm}{lX}
+        \bfseries {\zihao{4}学号}~~Student ID       & 012345678912                     \\
+        \bfseries {\zihao{4}姓名}~~Name             & 交通大学                              \\
+        \bfseries {\zihao{4}学生类别}~~Degree Program & 学术型博士生 Academic Doctoral Student \\
+        \bfseries {\zihao{4}学习形式}~~Study Mode     & 全日制 Full-time                    \\
+        \bfseries {\zihao{4}导师}~~Supervisor(s)    &                                  \\
+        \bfseries {\zihao{4}论文题目}~~Thesis title   &                                  \\
+        \bfseries {\zihao{4}学院}~~School           &                                  \\
+        \bfseries {\zihao{4}专业}~~Major            &                                  \\
+        \bfseries {\zihao{4}开题日期}~~Date            &                                  \\
+        \bfseries {\zihao{4}开题地点}~~Venue          &                                  \\
+    \end{tabularx}
+\end{table}
+
+\clearpage
+
+
+\begin{center}
+    \vspace*{0.5cm}
+    {\zihao{-3}\heiti 填\quad 报\quad 说\quad 明}\\~\\
+    {\zihao{-3}\bfseries Instruction}
+\end{center}
+
+% TODO: 段前段后检查一下
+\begin{enumerate}
+    \item {\fangsong 校本部研究生的开题报告应通过\href{http://my.sjtu.edu.cn/}{\color{blue}\underline{数字交大}}在线提交申请，填写本表并上传系统。特殊情况下经研究生院事先同意，可不上传系统，并使用《上海交通大学研究生论文开题评审表》完成评审。}\\[0.5\baselineskip]
+          The application for thesis/dissertation proposal should be submitted online through \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}. The student shall filled this form and upload it in the system. Under special circumstance, this form does not need to be uploaded and the review can be proceeded with the review form with prior consent from the graduate school.
+
+    \item {\fangsong 开题报告为A4大小，于左侧装订成册。各栏空格不够时，请自行加页。考核前提前一周送交导师、评审专家审阅。}\\[0.5\baselineskip]
+          This form should be printed with A4 papers and bound together on the left. If the space left is not enough, please feel free to add extra pages. The print version shall be sent to the supervisor, and the review committee members for review at least one week before the oral presentation.
+
+    \item {\fangsong 博士生导师可以根据博士生学位论文选题情况自行确定是否进行开题查新，博士学位论文开题查新报告应由查新工作站提供。}\\[0.5\baselineskip]
+          The supervisor should decide, based on the proposed topics, whether a novelty assessment report is needed or not, which should be conducted by an authorized novelty assessment department.
+
+    \item {\fangsong 开题报告通过后，定稿版开题报告由研究生、导师各存档一份，无需上传系统。}\\[0.5\baselineskip]
+          Upon passing the proposal, the final version of this report shall be archived by the graduate student and his/her supervisors for future reference.
+
+    \item {\fangsong 同等学力研究生开题答辩采用会议形式，硕士邀请至少3名相关学科/专业领域具有硕士研究生指导资格的专家。博士邀请5名相关学科/专业领域具有博士研究生指导资格的专家。}\\[0.5\baselineskip]
+          The capstone presentation adopts a conference format, and at least three experts with master's degree guidance qualifications in relevant disciplines and professional fields are invited for the master's degree. And five experts with doctoral guidance qualifications in relevant disciplines/professional fields are invited for doctoral guidance.
+\end{enumerate}
+
+\clearpage
+
+
+\pagestyle{plain}
+\setcounter{page}{1}
+
+
+% 填写表格，使用 \mychecked 打勾，使用 \myunchecked 表示未打勾
+\begin{table}[h]
+    \centering
+    \linespread{1.5}
+    \zihao{-4}
+    \fangsong
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \makecell[l]{论文题目\\Proposed Title} & 
+        \makecell[l]{
+            如果你的论文标题是一个一个很长很长很长很长很长的标题\\
+            请手动换行
+        }\\
+        \hline
+        \makecell[l]{研究课题来源\\Source of Research \\Project} &
+        \makecell[l]{
+            请在合适选项前画 \mychecked\ Please select proper options by ``\mychecked''.\\
+            \mychecked\ 国家自然科学基金课题 NSFC Research Grants\\
+            \myunchecked\ 国家社会科学基金 National Social Science Fund of China\\
+            \myunchecked\ 国家重大科研专项 National Key Research Projects\\
+            \myunchecked\ 其它纵向科研课题 Other Governmental Research Grants\\
+            \myunchecked\ 企业横向课题 R\&D Projects from Industry\\
+            \myunchecked\ 自拟课题 Self-proposed Project\\
+            \myunchecked\ 其它 Other                                     
+        }\\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+% 这里比 word 多空了一点，但我觉得这样更好看，如果想少空一行，可以取消注释下面一行
+% \vspace{-\baselineskip}
+
+\begin{field}
+    请综述课题国内外研究进展、现状、挑战与意义，可分节描述。博士生不少于10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
+    Please review the frontier, current status, challenges and significance of the research topic. The citations should be marked in the context and listed in order at the end of this section. No less than 8,000 words for doctoral students and 4,000 words for master students if written in English.
+\end{field}
+
+\begin{content}
+    让我来综述一下课题国内外研究进展、现状、挑战与意义。但是这里要写好多好多字，博士生要写一万字，所以我们要多引用一些文献来达到字数要求。
+
+    让我们引用著名的SPDZ协议\cite{SPDZ}。当然我们也可以引用一个中文文献\cite{ZJSD}。
+
+    最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，你可以通过将下面 \verb|\vspace{2\baselineskip}| 命令里的2修改为其他数字来调整间距。
+
+    % 可根据自己需要调整空行
+    \vspace{2\baselineskip}
+    参考文献 References: 
+    \printbibliography[heading=none]
+\end{content}
+
+
+\begin{field}
+    课题研究目标、主要研究内容和拟解决的关键问题。 
+    Research objectives, main contents and key issues to be solved.
+\end{field}
+
+\begin{content}
+    我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
+\end{content}
+
+
+\begin{field}
+    拟采取的研究方法、研究方案及其可行性分析。
+    Research methods and research scheme to be adopted and feasibility analysis.
+\end{field}
+
+\begin{content}
+    我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
+\end{content}
+
+
+\begin{field}
+    课题的创新点 Novelties of the proposed topic.
+\end{field}
+
+\begin{content}
+    我的课题非常的创新，第一点是他的创新点很多，第二是每一个创新点都非常非常的创新。
+\end{content}
+
+
+\begin{field}
+    计划进度、预期成果 Research schedule, and expected outcomes.
+\end{field}
+
+\begin{content}
+    我计划一年内发各种顶级会议，然后再发 Nature 和 Science 这样的期刊，然后获得诺贝尔奖。先获得诺贝尔计算机科学奖，然后是诺贝尔密码学奖，最后来个诺贝尔化学奖。
+\end{content}
+
+
+\begin{field}
+    与本课题有关的工作积累、已有的研究工作成绩。
+    Prior experience and accomplished achievements related to the proposed topic.
+\end{field}
+
+\begin{content}
+    目前已经积累了很多很多工作了，也取得了非常非常好的工作成绩。
+\end{content}
+
+
+
+\vspace{\baselineskip}
+\noindent\textbf{本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。I hereby declare and confirm that the details provided in this Form are valid and accurate. If anything untruthful found, I will bear the corresponding liabilities and consequences.}
+
+~
+
+\noindent
+\textbf{学生签字/Signature of Student：} 
+\hfill              
+\textbf{日期/Date： 202X-XX-XX}
+
+\end{document}

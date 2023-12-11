@@ -3,7 +3,7 @@
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
-\renewcommand{\rmdefault}{ptm}
+\renewcommand{\rmdefault}{ptm}  % 英文使用 Times Roman 字体
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bm}
@@ -26,7 +26,9 @@
 
 % 使用 TikZ 绘制 ``研究课题来源'' 表格里用到的勾和框
 % \myunchecked 绘制未打勾的方框
-\newcommand{\myunchecked}{\tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);}
+\NewDocumentCommand{\myunchecked}{}{%
+    \tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);%
+}
 \NewDocumentCommand{\mychecked}{s}{%
     \IfBooleanTF{#1}{% \mychecked* 绘制一个稍大的勾
         \tikz[baseline]{
@@ -44,19 +46,26 @@
 }
 
 
-% 仿宋粗体、自动编号、悬挂缩进
+% requirement环境，仿宋粗体、自动编号、悬挂缩进
 \newcounter{RequirementCounter}
 \newlength{\indentwidth}
-\newenvironment{requirement}{%
+\NewDocumentEnvironment{requirement}{}{%
     \vspace{12pt}%
     \fangsong\bfseries%
     \stepcounter{RequirementCounter}%
     \settowidth{\indentwidth}{\theRequirementCounter 、}%
-    \begin{hangparas}{\indentwidth}{1}\theRequirementCounter 、}
-    {\end{hangparas}}
+    \begin{hangparas}{\indentwidth}{1}
+        \theRequirementCounter 、% 编号和顿号
+}{%
+    \end{hangparas}%
+}
 
-% 楷体，行距\linespread{1.75}的设置为与word仔细比对后选取的经验值
-\newenvironment{content}{\kaishu\setlength{\parskip}{0.5\baselineskip}\linespread{1.75}\selectfont}{}
+% content环境，楷体，行距 \linespread{1.75} 为与word仔细比对后选取的经验值
+\NewDocumentEnvironment{content}{}{%
+    \kaishu%
+    \setlength{\parskip}{0.5\baselineskip}%
+    \linespread{1.75}\selectfont%
+}{}
 
 \linespread{1.25}
 
@@ -85,7 +94,7 @@
 %       b. 专业型博士生 Professional Doctoral Student
 %       c. 学术型硕士生 Academic Master Student
 %       d. 专业型硕士生 Professional Master Student
-% 2. 学习形式 Study Mode 中应填写以下两个中的一个
+% 2. 学习形式 Study Mode 中应填写以下三个中的一个
 %       a. 全日制 Full-time
 %       b. 非全日制 Part-time
 %       c. 同等学力学生
@@ -107,7 +116,7 @@
             & \makecell*[l]{全日制 Full-time}\\
         {\zihao{4}导师}~~Supervisor(s)
             & \makecell*[l]{我的导师}\\
-        {\zihao{4}论文题目}~~Thesis title
+        {\zihao{4}论文题目}~~Thesis Title
             & \makecell*[l]{我的很长很长很长很长很长很长很长很长很长的 \\ 
                             很厉害的论文题目}\\
         {\zihao{4}学院}~~School
@@ -194,18 +203,17 @@
 \setcounter{page}{1}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 填写说明：请在下面表格中填写你的信息，注意事项：
 % 1. 论文题目如果太长，使用 \\ 手动换行 (见示例)
 % 2. 本模板提供了 \mychecked 命令用来打勾，
 %    \myunchecked 命令用来画出未打勾的方框，
 %    你也可以自己使用 LaTeX 各种宏包里提供的打勾和方框命令代替
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[h]
     \centering
-    \linespread{1.68}
-    \zihao{-4}
-    \fangsong
+    \zihao{-4}\fangsong
+    \linespread{1.68}\selectfont   % 与word仔细比对后选取的经验值
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
         \makecell[l]{论文题目\\Proposed Title} & 
@@ -233,11 +241,11 @@
 \vspace{-\baselineskip}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 填写说明：开始撰写你的开题报告。
 % requirement 环境里是开题报告模板里的填写要求，已为你准备好。
-% 请在 content 环境里填写你的内容，具体请仔细查看示例和注释。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 请在 content 环境里填写你的内容，具体请参考示例和注释。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{requirement}
     请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
@@ -257,7 +265,7 @@
     让我们引用著名的SPDZ协议\cite{SPDZ}。
     当然我们也可以引用一个中文文献\cite{ZJSD}。
     或者写一点数学公式 $c^2 = a^2 + b^2$。
-    测试一下其他数学字体 
+    测试一下其他数学字体：
     \[
         \mathtt{text}\ \mathsf{Enc}\ \mathcal{F}\ \mathbb{Z}\ \bm{v},
     \]

@@ -1,7 +1,8 @@
-\documentclass[zihao=-4,a4paper,AutoFakeBold]{ctexart}
+\documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage[T1]{fontenc}
+\usepackage{fontspec}
 \renewcommand{\rmdefault}{ptm}
 \usepackage{calc}
 \usepackage{hanging}
@@ -11,14 +12,22 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{tikz}
-\usepackage[maxbibnames=9]{biblatex} % 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
+\usepackage{zhlipsum}
+% 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
+% 使用 sorting=none 选项指定按照文章内引用顺序来排序参考文献
+\usepackage[maxbibnames=9,sorting=none]{biblatex} 
 \addbibresource{ref.bib}
 \usepackage[hidelinks]{hyperref}
 
 
 % 使用 TikZ 绘制 ``研究课题来源'' 表格里用到的勾和框
-\newcommand{\myunchecked}{\tikz\draw (0,0) rectangle (12pt,12pt);}
-\newcommand{\mychecked}{\tikz{
+\newcommand{\myunchecked}{\tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);}
+\newcommand{\mychecked}{\tikz[baseline]{
+    \draw[semithick] (1.5pt,3pt) -- (2.5pt,4pt); 
+    \draw[thick] (2.5pt,4pt) -- (5.5pt,0);
+    \draw[semithick] (5.5pt,0) -- (9pt,9pt);
+}}
+\newcommand{\myanotherchecked}{\tikz[baseline]{
     \draw (-5.5pt,5pt) -- (-3.46pt,6pt); 
     \draw[thick] (-3.46pt,6pt) -- (0,0);
     \draw (0,0) -- (6.92pt,12pt);
@@ -31,7 +40,7 @@
     \vspace{12pt}%
     \fangsong\bfseries%
     \stepcounter{RequirementCounter}%
-    \settowidth{\indentwidth}{\theRequirementCounter 、}
+    \settowidth{\indentwidth}{\theRequirementCounter 、}%
     \begin{hangparas}{\indentwidth}{1}\theRequirementCounter 、}
     {\end{hangparas}}
 
@@ -57,11 +66,25 @@
     \vspace{0.5cm}
 \end{center}
 
-% 左栏中文楷体加粗四号字，英文为小四；右栏为仿宋小四
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 填写说明：请在下面表格中填写你的信息，注意事项：
+% 1. 学生类别 Degree Program 中应填写以下四个中的一个
+%       a. 学术型博士生 Academic Doctoral Student
+%       b. 专业型博士生 Professional Doctoral Student
+%       c. 学术型硕士生 Academic Master Student
+%       d. 专业型硕士生 Professional Master Student
+% 2. 学习形式 Study Mode 中应填写以下两个中的一个
+%       a. 全日制 Full-time
+%       b. 非全日制 Part-time
+%       c. 同等学力学生
+% 3. 论文题目如果太长，使用 \\ 手动换行 (见示例)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[h]
     \centering
     \renewcommand{\arraystretch}{1.2}
     \zihao{-4}
+    % 左栏中文楷体加粗四号字，英文为小四；右栏为仿宋小四
     \begin{tabularx}{15cm}{>{\bfseries\kaishu}l>{\fangsong}X<{\hrule}}
         {\zihao{4}学号}~~Student ID
             & \makecell*[l]{012345678912}\\
@@ -74,7 +97,8 @@
         {\zihao{4}导师}~~Supervisor(s)
             & \makecell*[l]{我的导师}\\
         {\zihao{4}论文题目}~~Thesis title
-            & \makecell*[l]{我的很长很长很长很长很长很长很长很长很长的 \\ 很厉害的论文题目}\\
+            & \makecell*[l]{我的很长很长很长很长很长很长很长很长很长的 \\ 
+                            很厉害的论文题目}\\
         {\zihao{4}学院}~~School
             & \makecell*[l]{我的学院}\\
         {\zihao{4}专业}~~Major
@@ -99,20 +123,57 @@
 
 \begin{enumerate}
     \fangsong
-    \item 校本部研究生的开题报告应通过\href{http://my.sjtu.edu.cn/}{\color{blue}\underline{数字交大}}在线提交申请，填写本表并上传系统。特殊情况下经研究生院事先同意，可不上传系统，并使用《上海交通大学研究生论文开题评审表》完成评审。\\[0.5\baselineskip]
-          The application for thesis/dissertation proposal should be submitted online through \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}. The student shall filled this form and upload it in the system. Under special circumstance, this form does not need to be uploaded and the review can be proceeded with the review form with prior consent from the graduate school.
+    \item 校本部研究生的开题报告应通过%
+          \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{数字交大}}%
+          在线提交申请，填写本表并上传系统。
+          特殊情况下经研究生院事先同意，可不上传系统，
+          并使用《上海交通大学研究生论文开题评审表》完成评审。
+          \\[0.5\baselineskip]
+          The application for thesis/dissertation proposal
+          should be submitted online through
+          \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}.
+          The student shall filled this form and upload it in the system.
+          Under special circumstance,
+          this form does not need to be uploaded
+          and the review can be proceeded with the review form
+          with prior consent from the graduate school.
 
-    \item 开题报告为A4大小，于左侧装订成册。各栏空格不够时，请自行加页。考核前提前一周送交导师、评审专家审阅。\\[0.5\baselineskip]
-          This form should be printed with A4 papers and bound together on the left. If the space left is not enough, please feel free to add extra pages. The print version shall be sent to the supervisor, and the review committee members for review at least one week before the oral presentation.
+    \item 开题报告为A4大小，于左侧装订成册。各栏空格不够时，请自行加页。
+          考核前提前一周送交导师、评审专家审阅。
+          \\[0.5\baselineskip]
+          This form should be printed with A4 papers
+          and bound together on the left.
+          If the space left is not enough,
+          please feel free to add extra pages.
+          The print version shall be sent to the supervisor,
+          and the review committee members for review
+          at least one week before the oral presentation.
 
-    \item 博士生导师可以根据博士生学位论文选题情况自行确定是否进行开题查新，博士学位论文开题查新报告应由查新工作站提供。\\[0.5\baselineskip]
-          The supervisor should decide, based on the proposed topics, whether a novelty assessment report is needed or not, which should be conducted by an authorized novelty assessment department.
+    \item 博士生导师可以根据博士生学位论文选题情况自行确定是否进行开题查新，
+          博士学位论文开题查新报告应由查新工作站提供。
+          \\[0.5\baselineskip]
+          The supervisor should decide, based on the proposed topics,
+          whether a novelty assessment report is needed or not,
+          which should be conducted by an authorized
+          novelty assessment department.
 
-    \item 开题报告通过后，定稿版开题报告由研究生、导师各存档一份，无需上传系统。\\[0.5\baselineskip]
-          Upon passing the proposal, the final version of this report shall be archived by the graduate student and his/her supervisors for future reference.
+    \item 开题报告通过后，定稿版开题报告由研究生、导师各存档一份，无需上传系统。
+          \\[0.5\baselineskip]
+          Upon passing the proposal,
+          the final version of this report shall be archived by the
+          graduate student and his/her supervisors for future reference.
 
-    \item 同等学力研究生开题答辩采用会议形式，硕士邀请至少3名相关学科/专业领域具有硕士研究生指导资格的专家。博士邀请5名相关学科/专业领域具有博士研究生指导资格的专家。\\[0.5\baselineskip]
-          The capstone presentation adopts a conference format, and at least three experts with master's degree guidance qualifications in relevant disciplines and professional fields are invited for the master's degree. And five experts with doctoral guidance qualifications in relevant disciplines/professional fields are invited for doctoral guidance.
+    \item 同等学力研究生开题答辩采用会议形式，
+          硕士邀请至少3名相关学科/专业领域具有硕士研究生指导资格的专家。
+          博士邀请5名相关学科/专业领域具有博士研究生指导资格的专家。
+          \\[0.5\baselineskip]
+          The capstone presentation adopts a conference format,
+          and at least three experts with master's degree guidance
+          qualifications in relevant disciplines and professional fields
+          are invited for the master's degree.
+          And five experts with doctoral guidance qualifications
+          in relevant disciplines/professional fields are invited
+          for doctoral guidance.
 \end{enumerate}
 
 \clearpage
@@ -122,24 +183,29 @@
 \setcounter{page}{1}
 
 
-% 填写表格，使用 \mychecked 打勾，使用 \myunchecked 表示未打勾
-% 也可以用 wasysym 等宏包里提供的 \checked 等命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 填写说明：请在下面表格中填写你的信息，注意事项：
+% 1. 论文题目如果太长，使用 \\ 手动换行 (见示例)
+% 2. 本模板提供了 \mychecked 命令用来打勾，
+%    \myunchecked 命令用来画出未打勾的方框，
+%    你也可以自己使用 LaTeX 各种宏包里提供的打勾和方框命令代替
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[h]
     \centering
-    \linespread{1.5}
+    \linespread{1.68}
     \zihao{-4}
     \fangsong
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
         \makecell[l]{论文题目\\Proposed Title} & 
         \makecell[l]{
-            如果你的论文标题是一个一个很长很长很长很长很长的标题\\
-            请手动换行
+            我的很长很长很长很长很长很长很长很长很长的\\
+            很厉害的论文题目
         }\\
         \hline
         \makecell[l]{研究课题来源\\Source of Research \\Project} &
         \makecell[l]{
-            请在合适选项前画 \mychecked\ Please select proper options by ``\mychecked''.\\
+            请在合适选项前画 \myanotherchecked\ \ Please select proper options by \ ``\myanotherchecked''.\\
             \mychecked\ 国家自然科学基金课题 NSFC Research Grants\\
             \myunchecked\ 国家社会科学基金 National Social Science Fund of China\\
             \myunchecked\ 国家重大科研专项 National Key Research Projects\\
@@ -155,23 +221,39 @@
 
 \vspace{-\baselineskip}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 填写说明：开始撰写你的开题报告。
+% requirement 环境里是开题报告模板里的填写要求，已为你准备好。
+% 请在 content 环境里填写你的内容，具体请仔细查看示例和注释。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{requirement}
-    请综述课题国内外研究进展、现状、挑战与意义，可分节描述。博士生不少于10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
-    Please review the frontier, current status, challenges and significance of the research topic. The citations should be marked in the context and listed in order at the end of this section. No less than 8,000 words for doctoral students and 4,000 words for master students if written in English.
+    请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
+    博士生不少于10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
+    Please review the frontier, current status, 
+    challenges and significance of the research topic. 
+    The citations should be marked in the context 
+    and listed in order at the end of this section. 
+    No less than 8,000 words for doctoral students 
+    and 4,000 words for master students if written in English.
 \end{requirement}
 
 \begin{content}
+    让我来综述一下课题国内外研究进展、现状、挑战与意义。
+    这里要写好多好多字，博士生要写一万字，硕士生要写五千字，
+    所以我们要多引用一些文献来达到字数要求。
+    让我们引用著名的SPDZ协议\cite{SPDZ}。
+    当然我们也可以引用一个中文文献\cite{ZJSD}。
+    或者写一点数学公式 $c^2 = a^2 + b^2$。
 
-    综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。
+    然后我们用一些无意义的文字来看看整体效果。
+    请不要尝试阅读和理解接下来的两段话，关注排版效果即可。
 
-综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。综述课题国内外研究进展、现状、挑战与意义，可分节描述。
+    \zhlipsum[1-2]
 
-
-    让我来综述一下课题国内外研究进展、现状、挑战与意义。但是这里要写好多好多字，博士生要写一万字，所以我们要多引用一些文献来达到字数要求。
-
-    让我们引用著名的SPDZ协议\cite{SPDZ}。当然我们也可以引用一个中文文献\cite{ZJSD}。
-
-    最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，你可以通过修改下面的命令来调整间距。
+    最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，
+    你可以通过修改下面的命令来调整间距。
 
     % 可根据自己需要调整空行
     \vspace{2\baselineskip}
@@ -193,7 +275,8 @@
 
 \begin{requirement}
     拟采取的研究方法、研究方案及其可行性分析。
-    Research methods and research scheme to be adopted and feasibility analysis.
+    Research methods and research scheme to be adopted 
+    and feasibility analysis.
 \end{requirement}
 
 \begin{content}
@@ -215,7 +298,8 @@
 \end{requirement}
 
 \begin{content}
-    我计划一年内发各种顶级会议，然后再发 Nature 和 Science 这样的期刊，然后获得诺贝尔奖。先获得诺贝尔计算机科学奖，然后是诺贝尔密码学奖，最后来个诺贝尔化学奖。
+    我计划一年内发各种顶级会议，然后再发 Nature 和 Science 这样的期刊，然后获得诺贝尔奖。
+    先获得诺贝尔计算机科学奖，然后是诺贝尔密码学奖，最后来个诺贝尔化学奖。
 \end{content}
 
 
@@ -232,7 +316,12 @@
 
 \vspace{\baselineskip}
 \noindent
-{\bfseries\fangsong 本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。I hereby declare and confirm that the details provided in this Form are valid and accurate. If anything untruthful found, I will bear the corresponding liabilities and consequences.}
+{\bfseries\fangsong 
+本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
+I hereby declare and confirm that the details 
+provided in this Form are valid and accurate. 
+If anything untruthful found, 
+I will bear the corresponding liabilities and consequences.}
 
 \vspace{\baselineskip}
 

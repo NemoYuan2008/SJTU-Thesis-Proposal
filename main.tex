@@ -4,6 +4,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
 \renewcommand{\rmdefault}{ptm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
 \usepackage{calc}
 \usepackage{hanging}
 \usepackage{graphicx}
@@ -11,6 +14,7 @@
 \usepackage{array}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
+\usepackage{xparse}
 \usepackage{tikz}
 \usepackage{zhlipsum}
 % 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
@@ -21,17 +25,24 @@
 
 
 % 使用 TikZ 绘制 ``研究课题来源'' 表格里用到的勾和框
+% \myunchecked 绘制未打勾的方框
 \newcommand{\myunchecked}{\tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);}
-\newcommand{\mychecked}{\tikz[baseline]{
-    \draw[semithick] (1.5pt,3pt) -- (2.5pt,4pt); 
-    \draw[thick] (2.5pt,4pt) -- (5.5pt,0);
-    \draw[semithick] (5.5pt,0) -- (9pt,9pt);
-}}
-\newcommand{\myanotherchecked}{\tikz[baseline]{
-    \draw (-5.5pt,5pt) -- (-3.46pt,6pt); 
-    \draw[thick] (-3.46pt,6pt) -- (0,0);
-    \draw (0,0) -- (6.92pt,12pt);
-}}
+\NewDocumentCommand{\mychecked}{s}{%
+    \IfBooleanTF{#1}{% \mychecked* 绘制一个稍大的勾
+        \tikz[baseline]{
+            \draw (-5.5pt,5pt) -- (-3.46pt,6pt); 
+            \draw[thick] (-3.46pt,6pt) -- (0,0);
+            \draw (0,0) -- (6.92pt,12pt);
+        }%
+    }{% \mychecked 绘制一个稍小的勾
+        \tikz[baseline]{
+            \draw[semithick] (1.5pt,3pt) -- (2.5pt,4pt); 
+            \draw[thick] (2.5pt,4pt) -- (5.5pt,0);
+            \draw[semithick] (5.5pt,0) -- (9pt,9pt);
+        }%
+    }%
+}
+
 
 % 仿宋粗体、自动编号、悬挂缩进
 \newcounter{RequirementCounter}
@@ -205,7 +216,7 @@
         \hline
         \makecell[l]{研究课题来源\\Source of Research \\Project} &
         \makecell[l]{
-            请在合适选项前画 \myanotherchecked\ \ Please select proper options by \ ``\myanotherchecked''.\\
+            请在合适选项前画 \mychecked*\ \ Please select proper options by \ ``\mychecked*''.\\
             \mychecked\ 国家自然科学基金课题 NSFC Research Grants\\
             \myunchecked\ 国家社会科学基金 National Social Science Fund of China\\
             \myunchecked\ 国家重大科研专项 National Key Research Projects\\
@@ -246,6 +257,12 @@
     让我们引用著名的SPDZ协议\cite{SPDZ}。
     当然我们也可以引用一个中文文献\cite{ZJSD}。
     或者写一点数学公式 $c^2 = a^2 + b^2$。
+    测试一下其他数学字体 
+    \[
+        \mathtt{text}\ \mathsf{Enc}\ \mathcal{F}\ \mathbb{Z}\ \bm{v},
+    \]
+    注意由于字体配置问题，\verb|\mathbf| 命令会失效，
+    目前没有找到很好的解决办法，请使用 \verb|\bm| 代替。
 
     然后我们用一些无意义的文字来看看整体效果。
     请不要尝试阅读和理解接下来的两段话，关注排版效果即可。

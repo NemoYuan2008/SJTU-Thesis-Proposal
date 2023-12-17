@@ -25,7 +25,7 @@
 
 % 使用 TikZ 绘制 ``研究课题来源'' 表格里用到的勾和框
 % \myunchecked 绘制未打勾的方框
-\NewDocumentCommand{\myunchecked}{}{%
+\newcommand{\myunchecked}{%
     \tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);%
 }
 \NewDocumentCommand{\mychecked}{s}{%
@@ -48,7 +48,7 @@
 % requirement环境，仿宋粗体、自动编号、悬挂缩进
 \newcounter{RequirementCounter}
 \newlength{\indentwidth}
-\NewDocumentEnvironment{requirement}{}{%
+\newenvironment{requirement}{%
     \vspace{12pt}%
     \fangsong\bfseries%
     \stepcounter{RequirementCounter}%
@@ -60,7 +60,7 @@
 }
 
 % content环境，楷体，行距 \linespread{1.75} 为与word仔细比对后选取的经验值
-\NewDocumentEnvironment{content}{}{%
+\newenvironment{content}{%
     \kaishu%
     \setlength{\parskip}{0.5\baselineskip}%
     \linespread{1.75}\selectfont%

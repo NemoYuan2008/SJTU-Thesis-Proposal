@@ -1,12 +1,11 @@
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
-\usepackage[T1]{fontenc}
 \usepackage{fontspec}
-\renewcommand{\rmdefault}{ptm}  % 英文使用 Times Roman 字体
+% 英文使用类 Times 字体, 也可以把下面这行改为 \setmainfont{Times New Roman}
+\setmainfont{TeX Gyre Termes}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{bm}
 \usepackage{calc}
 \usepackage{hanging}
 \usepackage{graphicx}
@@ -65,7 +64,9 @@
     \kaishu%
     \setlength{\parskip}{0.5\baselineskip}%
     \linespread{1.75}\selectfont%
-}{}
+}{%
+    \par
+}
 
 \linespread{1.25}
 
@@ -267,10 +268,13 @@
     或者写一点数学公式 $c^2 = a^2 + b^2$。
     测试一下其他数学字体：
     \[
-        \mathtt{text}\ \mathsf{Enc}\ \mathcal{F}\ \mathbb{Z}\ \bm{v},
+        ABC\quad
+        \mathbf{ABC}\quad
+        \mathsf{ABC}\quad
+        \mathcal{ABC}\quad
+        \mathbb{ABC}\quad
     \]
-    注意由于字体配置问题，\verb|\mathbf| 命令会失效，
-    目前没有找到很好的解决办法，请使用 \verb|\bm| 代替。
+    看起来是没有问题的。
 
     然后我们用一些无意义的文字来看看整体效果。
     请不要尝试阅读和理解接下来的两段话，关注排版效果即可。

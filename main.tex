@@ -2,8 +2,15 @@
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage{fontspec}
-% 英文使用类 Times 字体, 也可以把下面这行改为 \setmainfont{Times New Roman}
-\setmainfont{TeX Gyre Termes}
+% 使用类 Times 西文字体, 你也可以把下面的命令改为 \setmainfont{Times New Roman}
+\setmainfont{texgyretermes}[
+    Extension      = .otf ,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+]
+% \setmainfont{Times New Roman}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{calc}

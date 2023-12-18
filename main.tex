@@ -2,7 +2,7 @@
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage{fontspec}
-% 使用类 Times 西文字体, 你也可以把下面的命令改为 \setmainfont{Times New Roman}
+% 使用类 Times 西文字体
 \setmainfont{texgyretermes}[
     Extension      = .otf ,
     UprightFont    = *-regular,
@@ -10,6 +10,7 @@
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
 ]
+% 你也可以把上面的命令去掉，改为下面的 Times New Roman
 % \setmainfont{Times New Roman}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -272,21 +273,22 @@
     所以我们要多引用一些文献来达到字数要求。
     让我们引用著名的SPDZ协议\cite{SPDZ}。
     当然我们也可以引用一个中文文献\cite{ZJSD}。
-    或者写一点数学公式 $c^2 = a^2 + b^2$。
-    测试一下其他数学字体：
+    让我们写一点数学公式 $c^2 = a^2 + b^2$，
+    再测试一下其他数学字体：
     \[
+        \alpha\beta\gamma\quad
         ABC\quad
         \mathbf{ABC}\quad
         \mathsf{ABC}\quad
         \mathcal{ABC}\quad
-        \mathbb{ABC}\quad
+        \mathbb{ABC}
     \]
     看起来是没有问题的。
 
     然后我们用一些无意义的文字来看看整体效果。
-    请不要尝试阅读和理解接下来的两段话，关注排版效果即可。
+    请不要尝试阅读和理解接下来的一段话，关注排版效果（如行距、段间距等）与即可。
 
-    \zhlipsum[1-2]
+    \zhlipsum[1]
 
     最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，
     你可以通过修改下面的命令来调整间距。

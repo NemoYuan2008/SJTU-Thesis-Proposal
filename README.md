@@ -15,6 +15,8 @@
 ## 获取方法
 点击上方绿色 Code，选择 Download ZIP 下载源码到本地。或者使用 git 克隆本仓库。
 
+Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc)
+
 本仓库也[同步更新在 Gitee 上](https://gitee.com/unic0rn/SJTU-Thesis-Proposal)，方便无法访问 GitHub 的同志下载。
 
 ## 使用方法
@@ -25,7 +27,11 @@
 这里以 Overleaf 和 VSCode 为例说明。注意如果在本地使用需安装最新版 TeXLive 套装。使用其他编辑器的用户可参考相应编辑器的使用说明，只需注意将编译器设置为 XeLaTeX 即可。
 
 ### Overleaf 用户
-将下载下来的压缩包上传至 Overleaf 平台，并将编译器设置为 XeLaTeX，设置编译器的方法请参见 [Overleaf 文档](https://www.overleaf.com/learn/how-to/Changing_compiler)。
+直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，注意将编译器设置为 XeLaTeX。
+
+也可将从 GitHub 下载下来的压缩包上传至 Overleaf 平台，并将编译器设置为 XeLaTeX。
+
+设置编译器的方法请参见 [Overleaf 官方文档](https://www.overleaf.com/learn/how-to/Changing_compiler)。
 
 ### 本地 VSCode 用户
 安装 LaTeX Workshop 插件，使用 VSCode 打开文件夹，打开 `main.tex`，选择 `Recipe: latexmk (xelatex)` 进行编译。

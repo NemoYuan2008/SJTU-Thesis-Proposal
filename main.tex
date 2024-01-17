@@ -10,11 +10,10 @@
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
 ]
-% 你也可以把上面的命令去掉，改为下面的 Times New Roman
+% 你也可以把上面的字体设置命令去掉，改为下面的 Times New Roman
 % \setmainfont{Times New Roman}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{calc}
 \usepackage{hanging}
 \usepackage{graphicx}
 \usepackage{tabularx}
@@ -23,7 +22,6 @@
 \usepackage{makecell}
 \usepackage{xparse}
 \usepackage{tikz}
-\usepackage{zhlipsum}
 % 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
 % 使用 sorting=none 选项指定按照文章内引用顺序来排序参考文献
 \usepackage[maxbibnames=9,sorting=none]{biblatex} 
@@ -31,7 +29,7 @@
 \usepackage[hidelinks]{hyperref}
 
 
-% 使用 TikZ 绘制 ``研究课题来源'' 表格里用到的勾和框
+% 绘制 ``研究课题来源'' 表格里用到的勾和框
 % \myunchecked 绘制未打勾的方框
 \newcommand{\myunchecked}{%
     \tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);%
@@ -52,29 +50,20 @@
     }%
 }
 
+% 仿宋加粗、悬挂缩进，同时设置后续正文的字体、行距、段间距
+% 使用示例见正文
+\renewcommand*{\section}[1]{%
+    \par\vspace{12pt}\refstepcounter{section}%
+    \fangsong\bfseries\linespread{1.25}\selectfont\hangpara{18pt}{1}%
+    \thesection 、#1\par%
+    \normalfont\kaishu\setlength{\parskip}{0.5\baselineskip}\linespread{1.75}\selectfont}
 
-% requirement环境，仿宋粗体、自动编号、悬挂缩进
-\newcounter{RequirementCounter}
-\newlength{\indentwidth}
-\newenvironment{requirement}{%
-    \vspace{12pt}%
-    \fangsong\bfseries%
-    \stepcounter{RequirementCounter}%
-    \settowidth{\indentwidth}{\theRequirementCounter 、}%
-    \begin{hangparas}{\indentwidth}{1}
-        \theRequirementCounter 、% 编号和顿号
-}{%
-    \end{hangparas}%
-}
+\renewcommand*{\subsection}[1]{\refstepcounter{subsection}%
+    \par\noindent\textbf{\thesubsection\quad#1}\par}
 
-% content环境，楷体，行距 \linespread{1.75} 为与word仔细比对后选取的经验值
-\newenvironment{content}{%
-    \kaishu%
-    \setlength{\parskip}{0.5\baselineskip}%
-    \linespread{1.75}\selectfont%
-}{%
-    \par
-}
+\renewcommand*{\subsubsection}[1]{\refstepcounter{subsubsection}%
+    \par\noindent\textbf{\thesubsubsection\quad#1}\par}
+
 
 \linespread{1.25}
 
@@ -250,122 +239,114 @@
 \vspace{-\baselineskip}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 填写说明：开始撰写你的开题报告。
-% requirement 环境里是开题报告模板里的填写要求，已为你准备好。
-% 请在 content 环境里填写你的内容，具体请参考示例和注释。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. section 里是开题报告模板里的填写要求，已为你准备好。
+% 2. 请接在后面填写你的正文内容，具体请仔细阅读示例和注释。
+% 3. 你可以使用 \subsection 和 \subsubsection 命令来使用小标题
+%    小标题都可以使用 \label 打标签，并用 \ref 进行引用
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{requirement}
-    请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
-    博士生不少于10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
+
+\section{请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
+    博士生不少于\break
+    10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
     Please review the frontier, current status, 
     challenges and significance of the research topic. 
     The citations should be marked in the context 
     and listed in order at the end of this section. 
     No less than 8,000 words for doctoral students 
-    and 4,000 words for master students if written in English.
-\end{requirement}
-
-\begin{content}
-    让我来综述一下课题国内外研究进展、现状、挑战与意义。
-    这里要写好多好多字，博士生要写一万字，硕士生要写五千字，
-    所以我们要多引用一些文献来达到字数要求。
-    让我们引用著名的SPDZ协议\cite{SPDZ}。
-    当然我们也可以引用一个中文文献\cite{ZJSD}。
-    让我们写一点数学公式 $c^2 = a^2 + b^2$，
-    再测试一下其他数学字体：
-    \[
-        \alpha\beta\gamma\quad
-        ABC\quad
-        \mathbf{ABC}\quad
-        \mathsf{ABC}\quad
-        \mathcal{ABC}\quad
-        \mathbb{ABC}
-    \]
-    看起来是没有问题的。
-
-    然后我们用一些无意义的文字来看看整体效果。
-    请不要尝试阅读和理解接下来的一段话，关注排版效果（如行距、段间距等）即可。
-
-    \zhlipsum[1]
-
-    最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，
-    你可以通过修改下面的命令来调整间距。
-
-    % 可根据自己需要调整空行
-    \vspace{2\baselineskip}
-    \linespread{1.25}\selectfont % 参考文献行距小一点
-    参考文献 References: 
-    \printbibliography[heading=none]
-\end{content}
+    and 4,000 words for master students if written in English.}
 
 
-\begin{requirement}
-    课题研究目标、主要研究内容和拟解决的关键问题。 
-    Research objectives, main contents and key issues to be solved.
-\end{requirement}
+让我来综述一下课题国内外研究进展、现状、挑战与意义。
+这里要写好多好多字，博士生要写一万字，硕士生要写五千字，
+所以我们要多引用一些文献来达到字数要求。
+让我们引用著名的SPDZ协议\cite{SPDZ}。
+当然我们也可以引用一个中文文献\cite{ZJSD}。
+让我们写一点数学公式 $c^2 = a^2 + b^2$。
 
-\begin{content}
-    我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
-\end{content}
+你还可以使用二级标题和三级标题，
+并使用\LaTeX 的 \verb|\label| 和 \verb|\ref| 命令进行引用，
+如下所示。
+
+\subsection{二级标题}\label{sub}
+正文文字。
+
+\subsubsection{三级标题}\label{subsub}
+正文文字。
+
+\subsection{又一个二级标题}
+引用第~\ref{sub} 节和第~\ref{subsub} 节。
+
+最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来，
+你可以通过修改下面的命令来调整间距。
+
+% 可根据自己需要调整空行
+\vspace{2\baselineskip}
+\linespread{1.25}\selectfont % 参考文献行距小一点
+参考文献 References: 
+\printbibliography[heading=none]
 
 
-\begin{requirement}
-    拟采取的研究方法、研究方案及其可行性分析。
+
+\section{课题研究目标、主要研究内容和拟解决的关键问题。 
+    Research objectives, main contents and key issues to be solved.}
+
+我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
+我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
+我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
+
+
+
+\section{拟采取的研究方法、研究方案及其可行性分析。
     Research methods and research scheme to be adopted 
-    and feasibility analysis.
-\end{requirement}
+    and feasibility analysis.}
 
-\begin{content}
-    我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
-\end{content}
-
-
-\begin{requirement}
-    课题的创新点 Novelties of the proposed topic.
-\end{requirement}
-
-\begin{content}
-    我的课题非常的创新，第一点是他的创新点很多，第二是每一个创新点都非常非常的创新。
-\end{content}
+我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
+我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
+我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
 
 
-\begin{requirement}
-    计划进度、预期成果 Research schedule, and expected outcomes.
-\end{requirement}
 
-\begin{content}
-    我计划一年内发各种顶级会议，然后再发 Nature 和 Science 这样的期刊，然后获得诺贝尔奖。
-    先获得诺贝尔计算机科学奖，然后是诺贝尔密码学奖，最后来个诺贝尔化学奖。
-\end{content}
+\section{课题的创新点 Novelties of the proposed topic.}
+
+我的课题非常的创新，第一点是他的创新点很多，第二是每一个创新点都非常非常的创新。
 
 
-\begin{requirement}
-    与本课题有关的工作积累、已有的研究工作成绩。
-    Prior experience and accomplished achievements related to the proposed topic.
-\end{requirement}
 
-\begin{content}
-    目前已经积累了很多很多工作了，也取得了非常非常好的工作成绩。
-\end{content}
+\section{计划进度、预期成果 Research schedule, and expected outcomes.}
+
+我计划一年内发各种顶级会议，然后再发 Nature 和 Science 这样的期刊，然后获得诺贝尔奖。
+先获得诺贝尔计算机科学奖，然后是诺贝尔密码学奖，最后来个诺贝尔化学奖。
+
+
+
+\section{与本课题有关的工作积累、已有的研究工作成绩。
+    Prior experience and accomplished achievements 
+    related to the proposed topic.}
+
+
+目前已经积累了很多很多工作了，也取得了非常非常好的工作成绩。
+
 
 
 
 \vspace{\baselineskip}
+
+\bfseries\fangsong% 剩下的所有内容均为仿宋加粗
 \noindent
-{\bfseries\fangsong 
 本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
 I hereby declare and confirm that the details 
 provided in this Form are valid and accurate. 
 If anything untruthful found, 
-I will bear the corresponding liabilities and consequences.}
+I will bear the corresponding liabilities and consequences.
 
 \vspace{\baselineskip}
 
 \noindent
-\textbf{学生签字/Signature of Student：} 
+学生签字/Signature of Student： 交通大学
 \hfill              
-\textbf{日期/Date： 202Y-MM-DD}
+日期/Date： 202Y-MM-DD
 
 \end{document}

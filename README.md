@@ -30,7 +30,7 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 
 ### Overleaf 用户
 
-直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，注意将编译器设置为 XeLaTeX。
+直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，注意将编译器设置为 XeLaTeX。Overleaf 上模板的更新速度可能会滞后于在 GitHub 上更新的速度。
 
 也可将从 GitHub 下载下来的压缩包上传至 Overleaf 平台，并将编译器设置为 XeLaTeX。
 

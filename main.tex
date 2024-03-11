@@ -25,6 +25,7 @@
 % 使用 sorting=none 选项指定按照文章内引用顺序来排序参考文献
 \usepackage[maxbibnames=9,sorting=none]{biblatex} 
 \addbibresource{ref.bib}
+\usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
 
@@ -90,8 +91,8 @@
 \begin{table}[h]
     \centering
     \renewcommand{\arraystretch}{1.2}
+    % 左栏中文为楷体加粗四号字，英文为小四加粗；右栏为仿宋小四加下划线
     \zihao{-4}
-    % 左栏中文为楷体加粗四号字，英文为小四加粗；右栏为仿宋小四
     \begin{tabularx}{15cm}{>{\bfseries\kaishu}l>{\fangsong}X<{\hrule}}
         {\zihao{4}学号}~~Student ID
             & \makecell*[l]{012345678912}\\
@@ -224,10 +225,14 @@
     \end{tabularx}
 \end{table}
 
-\vspace{-\baselineskip}
+\vspace{-2\baselineskip}
 
 % 后续正文部分：楷体、0.5倍段间距，行距 1.75 为与官方 word 版仔细比对后选取的经验值
 \kaishu\setlength{\parskip}{0.5\baselineskip}\linespread{1.75}\selectfont
+
+\makeatletter
+\appto{\@floatboxreset}{\kaishu\zihao{-4}}
+\makeatother
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -262,12 +267,26 @@
 如第\ref{sub}节和第\ref{subsub}节所示。
 
 
+
+
 \subsection{二级标题}\label{sub}
-正文文字。
+
+% 文字来自《祝福》，以展示排版效果
+旧历的年底毕竟最像年底，村镇上不必说，就在天空中也显出将到新年的气象来。
+灰白色的沉重的晚云中间时时发出闪光，接着一声钝响，是送灶的爆竹；
+近处燃放的可就更强烈了，震耳的大音还没有息，空气里已经散满了幽微的火药香。
+我是正在这一夜回到我的故乡鲁镇的。
+
+
 
 \subsubsection{三级标题}\label{subsub}
-正文文字。
 
+虽说故乡，然而已没有家，所以只得暂寓在鲁四老爷的宅子里。
+他是我的本家，比我长一辈，应该称之曰“四叔”，是一个讲理学的老监生。
+他比先前并没有甚么大改变，单是老了些，但也还未留胡子，
+一见面是寒暄，寒暄之后说我“胖了”，说我“胖了”之后即大骂其新党。
+但我知道，这并非借题在骂我：因为他所骂的还是康有为。
+但是，谈话是总不投机的了，于是不多久，我便一个人剩在书房里。
 
 
 最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来。
@@ -325,7 +344,8 @@
 
 \vspace{\baselineskip}
 
-\bfseries\fangsong% 剩下的所有内容均为仿宋加粗
+% 剩下的所有内容均为仿宋加粗
+\bfseries\fangsong
 \noindent
 本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
 I hereby declare and confirm that the details 

@@ -2,7 +2,7 @@
 
 \usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
 \usepackage{fontspec}
-% 使用类 Times 西文字体
+% 使用 Times Roman 西文字体
 \setmainfont{texgyretermes}[
     Extension      = .otf ,
     UprightFont    = *-regular,
@@ -10,52 +10,33 @@
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
 ]
-% 你也可以把上面的字体设置命令去掉，改为下面的 Times New Roman
-% \setmainfont{Times New Roman}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{titlesec}
+\usepackage{color}
 \usepackage{graphicx}
-\usepackage{tabularx}
 \usepackage{array}
-\usepackage[normalem]{ulem}
 \usepackage{makecell}
-\usepackage{tikz}
-% 可使用 style=gb7714-2015 选项来指定参考文献国标样式，但官方模板对此未做要求
-% 使用 sorting=none 选项指定按照文章内引用顺序来排序参考文献
 \usepackage[maxbibnames=9,sorting=none]{biblatex} 
 \addbibresource{ref.bib}
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
 
-% 绘制 ``研究课题来源'' 表格里用到的勾和框
-% \myunchecked 绘制未打勾的方框
-\newcommand{\myunchecked}{%
-    \tikz[baseline] \draw[semithick] (1pt,1pt) rectangle (9pt,9pt);%
-}
-\NewDocumentCommand{\mychecked}{s}{%
-    \IfBooleanTF{#1}{% \mychecked* 绘制一个稍大的勾
-        \tikz[baseline]{
-            \draw (-5.5pt,5pt) -- (-3.46pt,6pt); 
-            \draw[thick] (-3.46pt,6pt) -- (0,0);
-            \draw (0,0) -- (6.92pt,12pt);
-        }%
-    }{% \mychecked 绘制一个稍小的勾
-        \tikz[baseline]{
-            \draw[semithick] (1.5pt,3pt) -- (2.5pt,4pt); 
-            \draw[thick] (2.5pt,4pt) -- (5.5pt,0);
-            \draw[semithick] (5.5pt,0) -- (9pt,9pt);
-        }%
-    }%
-}
+% 定义 ``研究课题来源'' 表格里用到的勾和框
+\xeCJKDeclareCharClass{CJK}{"25A1}
+\newcommand{\myunchecked}{\Uchar"25A1}          % 未打勾的方框
+\newcommand{\mychecked}{\kern1.8pt\checkmark}   % 打勾
 
 
 % 一级标题仿宋加粗、悬挂缩进
-\titleformat{\section}[hang]{\fangsong\bfseries}{\thesection、}{0pt}{\linespread{1.25}\selectfont}
-% 小标题楷体加粗，与正文字体一致
-\titleformat*{\subsection}{\kaishu\bfseries}
-\titleformat*{\subsubsection}{\kaishu\bfseries}
+% 二级和三级标题楷体加粗，与正文字体一致
+\ctexset{
+    section / name = {,、},     % 一级标题编号后的顿号
+    section / aftername = {},   % 取消顿号后的间距
+    section / format = \fangsong\bfseries\linespread{1.25}\selectfont,
+    subsection / format = \kaishu\bfseries,
+    subsubsection / format = \kaishu\bfseries,
+}
 
 
 \begin{document}
@@ -93,29 +74,29 @@
     \renewcommand{\arraystretch}{1.2}
     % 左栏中文为楷体加粗四号字，英文为小四加粗；右栏为仿宋小四加下划线
     \zihao{-4}
-    \begin{tabularx}{15cm}{>{\bfseries\kaishu}l>{\fangsong}X<{\hrule}}
+    \begin{tabular}{>{\bfseries\kaishu}l>{\fangsong}p{9.3cm}<{\vspace{8pt}\hrule}}
         {\zihao{4}学号}~~Student ID
-            & \makecell*[l]{012345678912}\\
+            & 012345678912\\
         {\zihao{4}姓名}~~Name
-            & \makecell*[l]{交通大学}\\
+            & 交通大学\\
         {\zihao{4}学生类别}~~Degree Program
-            & \makecell*[l]{学术型博士生 Academic Doctoral Student}\\
+            & 学术型博士生 Academic Doctoral Student\\
         {\zihao{4}学习形式}~~Study Mode
-            & \makecell*[l]{全日制 Full-time}\\
+            & 全日制 Full-time\\
         {\zihao{4}导师}~~Supervisor(s)
-            & \makecell*[l]{我的导师}\\
+            & 我的导师\\
         {\zihao{4}论文题目}~~Thesis Title
-            & \makecell*[l]{我的很长很长很长很长很长很长很长很长很长的 \\ 
-                            很厉害的论文题目}\\
+            & \makecell[l]{我的很长很长很长很长很长很长很长很长很长的\\
+                           很厉害的论文题目}\vspace{-5pt}\\
         {\zihao{4}学院}~~School
-            & \makecell*[l]{我的学院}\\
+            & 我的学院\\
         {\zihao{4}专业}~~Major
-            & \makecell*[l]{我的专业}\\
+            & 我的专业\\
         {\zihao{4}开题日期}~~Date
-            & \makecell*[l]{202Y-MM-DD}\\
+            & 202Y-MM-DD\\
         {\zihao{4}开题地点}~~Venue
-            & \makecell*[l]{会议室}\\
-    \end{tabularx}
+            & 会议室\\
+    \end{tabular}
     \vspace{-5cm}   % 防止表格过长被排到下一页
 \end{table}
 
@@ -124,8 +105,10 @@
 
 
 \begin{center}
+    \zihao{-3}
     \vspace*{0.5cm}
-    {\zihao{-3}\heiti 填\quad 报\quad 说\quad 明}\\~\\
+    {\heiti 填\quad 报\quad 说\quad 明}\par
+    \vspace{0.66cm}
     {\zihao{-3}\bfseries Instruction}
 \end{center}
 
@@ -195,14 +178,13 @@
 % 填写说明：请在下面表格中填写你的信息，注意事项：
 % 1. 论文题目如果太长，使用 \\ 手动换行 (见示例)
 % 2. 本模板提供了 \mychecked 命令用来打勾，
-%    \myunchecked 命令用来画出未打勾的方框，
-%    你也可以自己使用 LaTeX 各种宏包里提供的打勾和方框命令代替
+%    \myunchecked 命令用来画出未打勾的方框
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[h]
     \centering
     \zihao{-4}\fangsong
     \linespread{1.68}\selectfont   % 与word仔细比对后选取的经验值
-    \begin{tabularx}{\textwidth}{|l|X|}
+    \begin{tabular}{|p{3.3cm}|p{11cm}|}
         \hline
         \makecell[l]{论文题目\\Proposed Title} & 
         \makecell[l]{
@@ -212,24 +194,28 @@
         \hline
         \makecell[l]{研究课题来源\\Source of Research \\Project} &
         \makecell[l]{
-            请在合适选项前画 \mychecked*\ \ Please select proper options by \ ``\mychecked*''.\\
+            请在合适选项前画 \checkmark\ \ Please select proper options by ``\checkmark''.\\
             \mychecked\ 国家自然科学基金课题 NSFC Research Grants\\
             \myunchecked\ 国家社会科学基金 National Social Science Fund of China\\
-            \myunchecked\ 国家重大科研专项 National Key Research Projects\\
+            \mychecked\ 国家重大科研专项 National Key Research Projects\\
             \myunchecked\ 其它纵向科研课题 Other Governmental Research Grants\\
             \myunchecked\ 企业横向课题 R\&D Projects from Industry\\
             \myunchecked\ 自拟课题 Self-proposed Project\\
-            \myunchecked\ 其它 Other\ \ \uline{在此处填写内容 \hfill}
+            \myunchecked\ 其它 Other\ \ \vtop{\hbox{在此处填写内容} \hbox{\rule[-1.5pt]{8cm}{.25pt}}}\\
         }\\
         \hline
-    \end{tabularx}
+    \end{tabular}
 \end{table}
 
-\vspace{-2\baselineskip}
+\vspace{-37.7pt}
 
-% 后续正文部分：楷体、0.5倍段间距，行距 1.75 为与官方 word 版仔细比对后选取的经验值
-\kaishu\setlength{\parskip}{0.5\baselineskip}\linespread{1.75}\selectfont
+% 设置后续正文的字体：楷体、0.5倍段间距
+% 行距背书1.75 为与官方 word 版仔细比对后选取的经验值
+\kaishu
+\setlength{\parskip}{0.5\baselineskip}
+\linespread{1.75}\selectfont
 
+% 设置浮动体内的字体为楷体小四号字，与正文一致
 \makeatletter
 \appto{\@floatboxreset}{\kaishu\zihao{-4}}
 \makeatother
@@ -258,13 +244,13 @@
 让我来综述一下课题国内外研究进展、现状、挑战与意义。
 这里要写好多好多字，博士生要写一万字，硕士生要写五千字，
 所以我们要多引用一些文献来达到字数要求。
-让我们引用著名的SPDZ协议\cite{SPDZ}。
-当然我们也可以引用一个中文文献\cite{ZJSD}。
+让我们引用著名的SPDZ协议 \cite{SPDZ}。
+当然我们也可以引用一个中文文献 \cite{ZJSD}。
 让我们写一点数学公式 $c^2 = a^2 + b^2$。
 
 你还可以使用二级标题和三级标题，
 并使用\LaTeX 的 \verb|\label| 和 \verb|\ref| 命令进行引用，
-如第\ref{sub}节和第\ref{subsub}节所示。
+如第 \ref{sub} 节和第 \ref{subsub} 节所示。
 
 
 
@@ -344,8 +330,8 @@
 
 \vspace{\baselineskip}
 
-% 剩下的所有内容均为仿宋加粗
-\bfseries\fangsong
+% 剩下的所有内容均为仿宋加粗小四号字
+\normalfont\zihao{-4}\bfseries\fangsong
 \noindent
 本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
 I hereby declare and confirm that the details 

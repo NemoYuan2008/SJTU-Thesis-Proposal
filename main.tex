@@ -16,7 +16,7 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{makecell}
-\usepackage[maxbibnames=9,sorting=none]{biblatex} 
+\usepackage[style=gb7714-2015]{biblatex} 
 \addbibresource{ref.bib}
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
@@ -24,8 +24,8 @@
 
 % 定义 ``研究课题来源'' 表格里用到的勾和框
 \xeCJKDeclareCharClass{CJK}{"25A1}
-\newcommand{\myunchecked}{\Uchar"25A1}          % 未打勾的方框
-\newcommand{\mychecked}{\kern1.8pt\checkmark}   % 打勾
+\newcommand{\myunchecked}{\Uchar"25A1}  % 未打勾的方框
+\newcommand{\mychecked}{\,\checkmark}   % 打勾
 
 
 % 一级标题仿宋加粗、悬挂缩进
@@ -123,7 +123,7 @@
           The application for thesis/dissertation proposal
           should be submitted online through
           \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}.
-          The student shall filled this form and upload it in the system.
+          The student shall fill this form and upload it in the system.
           Under special circumstance,
           this form does not need to be uploaded
           and the review can be proceeded with the review form
@@ -207,7 +207,7 @@
     \end{tabular}
 \end{table}
 
-\vspace{-37.7pt}
+\vspace{-1.3cm}
 
 % 设置后续正文的字体：楷体、0.5倍段间距
 % 行距背书1.75 为与官方 word 版仔细比对后选取的经验值
@@ -248,39 +248,23 @@
 当然我们也可以引用一个中文文献 \cite{ZJSD}。
 让我们写一点数学公式 $c^2 = a^2 + b^2$。
 
-你还可以使用二级标题和三级标题，
-并使用\LaTeX 的 \verb|\label| 和 \verb|\ref| 命令进行引用，
-如第 \ref{sub} 节和第 \ref{subsub} 节所示。
-
-
-
 
 \subsection{二级标题}\label{sub}
 
-% 文字来自《祝福》，以展示排版效果
-旧历的年底毕竟最像年底，村镇上不必说，就在天空中也显出将到新年的气象来。
-灰白色的沉重的晚云中间时时发出闪光，接着一声钝响，是送灶的爆竹；
-近处燃放的可就更强烈了，震耳的大音还没有息，空气里已经散满了幽微的火药香。
-我是正在这一夜回到我的故乡鲁镇的。
+你还可以使用二级标题和三级标题，
+并使用 \LaTeX{} 的 \verb|\label| 和 \verb|\ref| 命令进行引用，
+如第 \ref{sub} 节和第 \ref{subsub} 节所示。
 
 
 
 \subsubsection{三级标题}\label{subsub}
 
-虽说故乡，然而已没有家，所以只得暂寓在鲁四老爷的宅子里。
-他是我的本家，比我长一辈，应该称之曰“四叔”，是一个讲理学的老监生。
-他比先前并没有甚么大改变，单是老了些，但也还未留胡子，
-一见面是寒暄，寒暄之后说我“胖了”，说我“胖了”之后即大骂其新党。
-但我知道，这并非借题在骂我：因为他所骂的还是康有为。
-但是，谈话是总不投机的了，于是不多久，我便一个人剩在书房里。
+最后要打印出参考文献列表，如下所示。
 
 
-最后要打印出参考文献列表，在列出列表之前，我空了2个空行出来。
-
-% 可根据自己需要调整空行
-\vspace{2\baselineskip}
-{
-    \linespread{1.25}\selectfont% 参考文献行距小一点
+\vspace{2\baselineskip}% 为了让参考文献列表与正文有 2 行的间距
+{%
+    \linespread{1.25}\selectfont    % 参考文献行距小一点
     参考文献 References: 
     \printbibliography[heading=none]
 }
@@ -290,8 +274,6 @@
     Research objectives, main contents and key issues to be solved.}
 
 我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
-我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
-我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
 
 
 
@@ -299,8 +281,6 @@
     Research methods and research scheme to be adopted 
     and feasibility analysis.}
 
-我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
-我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
 我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
 
 

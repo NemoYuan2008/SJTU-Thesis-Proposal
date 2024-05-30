@@ -2,7 +2,7 @@
 
 本仓库是上海交通大学开题报告 LaTeX（非官方）模板，基于上海交通大学研究生院官网给出的 [word 模板](https://www.gs.sjtu.edu.cn/xzzx/pygl) 制作。
 
-本模板**仅支持 XeTeX 引擎和 UTF-8 编码**。
+本模板**仅支持 XeTeX 引擎和 UTF-8 编码，请使用 XeLaTeX 编译！！！**
 
 如果你觉得本仓库有用，请点个 star 小星星 :star::star::star: 支持一下 :star_struck:
 
@@ -16,9 +16,7 @@
 
 点击上方绿色 Code，选择 Download ZIP 下载源码到本地。或者使用 git 克隆本仓库。
 
-Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc)
-
-本仓库也[同步更新在 Gitee 上](https://gitee.com/unic0rn/SJTU-Thesis-Proposal)，方便无法访问 GitHub 的同志下载。
+Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc)，需注意 Overleaf 上模板的更新速度可能会滞后于在 GitHub 上更新的速度。
 
 ## 使用方法
 
@@ -30,23 +28,20 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 
 ### Overleaf 用户
 
-直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，注意将编译器设置为 XeLaTeX。Overleaf 上模板的更新速度可能会滞后于在 GitHub 上更新的速度。
-
-也可将从 GitHub 下载下来的压缩包上传至 Overleaf 平台，并将编译器设置为 XeLaTeX。
-
+直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，**注意将编译器设置为 XeLaTeX**。
 设置编译器的方法请参见 [Overleaf 官方文档](https://www.overleaf.com/learn/how-to/Changing_compiler)。
+
+也可将从 GitHub 下载下来的压缩包上传至 Overleaf 平台。
 
 ### 本地 VSCode 用户
 
-安装 LaTeX Workshop 插件，使用 VSCode 打开文件夹，打开 `main.tex`，选择 `Recipe: latexmk (xelatex)` 进行编译。
+安装 LaTeX Workshop 插件，使用 VSCode 打开文件夹，打开 `main.tex`，在边栏中展开 `Build LaTeX project`，选择 `Recipe: latexmk (xelatex)` 进行编译。
 在 VSCode 设置中搜索 `latex-workshop.latex.recipe.default` 并将其改为 `lastUsed` 以便一直使用该选项编译。
-注意，使用其他选项会导致报错。
+注意，**使用其他选项会导致报错**。
 
 ### 从命令行编译
 
-使用 `latexmk -xelatex main` 命令来进行编译，可以加入 `-synctex=1` 命令行选项来方便编辑器定位。
-
-如果你熟悉 LaTeX 编译流程也可手动进行编译 `xelatex main && biber main && xelatex main  && xelatex main`，注意文献管理使用的是 `biber` 而不是 `bibtex`。
+使用 `latexmk -xelatex main` 命令来进行编译。
 
 ## 贡献
 

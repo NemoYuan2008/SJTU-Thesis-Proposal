@@ -1,32 +1,37 @@
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
 
-\usepackage[top=2.5cm,bottom=2.5cm,left=2.8cm,right=2.8cm]{geometry}
-\usepackage{fontspec}
-% 使用 Times Roman 西文字体
-\setmainfont{texgyretermes}[
-    Extension      = .otf ,
-    UprightFont    = *-regular,
-    BoldFont       = *-bold,
-    ItalicFont     = *-italic,
-    BoldItalicFont = *-bolditalic,
-]
+\usepackage{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{makecell}
-\usepackage[style=gb7714-2015]{biblatex} 
+\usepackage[style=gb7714-2015]{biblatex}
 \addbibresource{ref.bib}
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
+% 设置页边距
+\geometry{
+    top    = 2.5cm,
+    bottom = 2.5cm,
+    left   = 2.8cm,
+    right  = 2.8cm,
+}
+
+% 使用 Times Roman 西文字体
+\setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+]
 
 % 定义 ``研究课题来源'' 表格里用到的勾和框
-\xeCJKDeclareCharClass{CJK}{"25A1}
-\newcommand{\myunchecked}{\Uchar"25A1}  % 未打勾的方框
-\newcommand{\mychecked}{\,\checkmark}   % 打勾
-
+\newcommand*{\myunchecked}{$\square$\kern.65pt}  % 未打勾的方框
+\newcommand*{\mychecked}{\checkmark}   % 打勾
 
 % 一级标题仿宋加粗、悬挂缩进
 % 二级和三级标题楷书加粗，与正文字体一致
@@ -49,9 +54,10 @@
 \end{figure}
 
 \begin{center}
+    \bfseries
     \vspace{-0.5cm}
-    {\zihao{1}\songti\bfseries 研究生学位论文开题报告}\\~\\
-    {\zihao{-3}\bfseries Graduate Thesis/Dissertation Proposal}
+    \zihao{1} 研究生学位论文开题报告\par\vspace{18.8pt}
+    \zihao{-3} Graduate Thesis/Dissertation Proposal
     \vspace{0.5cm}
 \end{center}
 
@@ -97,7 +103,7 @@
         {\zihao{4}开题地点}~~Venue
             & 会议室\\
     \end{tabular}
-    \vspace{-5cm}   % 防止表格过长被排到下一页
+    \vspace{-5cm}   % 防止表格被排到下一页
 \end{table}
 
 
@@ -109,7 +115,7 @@
     \vspace*{0.5cm}
     {\heiti 填\quad 报\quad 说\quad 明}\par
     \vspace{0.66cm}
-    {\zihao{-3}\bfseries Instruction}
+    {\bfseries Instruction}
 \end{center}
 
 \begin{enumerate}
@@ -192,16 +198,17 @@
             很厉害的论文题目
         }\\
         \hline
-        \makecell[l]{研究课题来源\\Source of Research \\Project} &
+        \makecell[l]{研究课题来源\\Source of Research\\Project} &
         \makecell[l]{
-            请在合适选项前画 \checkmark\ \ Please select proper options by ``\checkmark''.\\
+            请在合适选项前画 \checkmark~~Please select proper options by ``\checkmark''.\\
             \mychecked\ 国家自然科学基金课题 NSFC Research Grants\\
             \myunchecked\ 国家社会科学基金 National Social Science Fund of China\\
             \mychecked\ 国家重大科研专项 National Key Research Projects\\
             \myunchecked\ 其它纵向科研课题 Other Governmental Research Grants\\
             \myunchecked\ 企业横向课题 R\&D Projects from Industry\\
             \myunchecked\ 自拟课题 Self-proposed Project\\
-            \myunchecked\ 其它 Other\ \ \vtop{\hbox{在此处填写内容} \hbox{\rule[-1.5pt]{8cm}{.25pt}}}\\
+            \myunchecked\ 其它 Other\enspace
+                \vtop{\hbox{在此处填写内容} \hbox{\rule[-1.5pt]{8cm}{.25pt}}}\\
         }\\
         \hline
     \end{tabular}
@@ -231,8 +238,8 @@
 
 
 \section{请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
-    博士生不少于\break
-    10,000汉字，硕士生不少于5,000汉字。请在文中标注参考文献。 
+    博士生不少于 10,000 汉字，硕士生不少于 5,000 汉字。
+    请在文中标注参考文献。 
     Please review the frontier, current status, 
     challenges and significance of the research topic. 
     The citations should be marked in the context 
@@ -262,7 +269,7 @@
 最后要打印出参考文献列表，如下所示。
 
 
-\vspace{2\baselineskip}% 为了让参考文献列表与正文有 2 行的间距
+\vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
     \linespread{1.25}\selectfont    % 参考文献行距小一点
     参考文献 References: 

@@ -52,3 +52,7 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 上海交通大学校徽校名图片的版权 (`figures/sjtu-logo.png`) 归上海交通大学所有, 该图片下载自[上海交通大学视觉形象识别系统](https://vi.sjtu.edu.cn)。
 
 其余部分使用 MIT 许可证授权。
+
+## 致谢
+
+感谢 @AlexaraWu 和 @LogCreative 对于表格设计的帮助！

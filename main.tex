@@ -1,8 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 这是上海交通大学研究生学位论文开题报告的 LaTeX 模板
+% 如需博士生年度进展报告模板，请使用 main_phd_mid_report.tex
+% 使用时请仔细阅读注释并按照要求填写
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
 
 \usepackage{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{array}
@@ -53,6 +60,8 @@
         afterskip = 0pt,
     },
 }
+
+\setlist{nosep}
 
 
 \begin{document}
@@ -123,20 +132,19 @@
 
 \begin{center}
     \zihao{-3}
-    \vspace*{0.5cm}
     {\heiti 填\quad 报\quad 说\quad 明}\par
     \vspace{0.66cm}
     {\bfseries Instruction}
 \end{center}
 
-\begin{enumerate}
+\begin{enumerate}[parsep=.5\baselineskip]
     \fangsong
     \item 校本部研究生的开题报告应通过%
           \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{数字交大}}%
           在线提交申请，填写本表并上传系统。
           特殊情况下经研究生院事先同意，可不上传系统，
           并使用《上海交通大学研究生论文开题评审表》完成评审。
-          \\[0.5\baselineskip]
+          
           The application for thesis/dissertation proposal
           should be submitted online through
           \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}.
@@ -148,7 +156,7 @@
 
     \item 开题报告为A4大小，于左侧装订成册。各栏空格不够时，请自行加页。
           考核前提前一周送交导师、评审专家审阅。
-          \\[0.5\baselineskip]
+
           This form should be printed with A4 papers
           and bound together on the left.
           If the space left is not enough,
@@ -159,14 +167,14 @@
 
     \item 博士生导师可以根据博士生学位论文选题情况自行确定是否进行开题查新，
           博士学位论文开题查新报告应由查新工作站提供。
-          \\[0.5\baselineskip]
+
           The supervisor should decide, based on the proposed topics,
           whether a novelty assessment report is needed or not,
           which should be conducted by an authorized
           novelty assessment department.
 
     \item 开题报告通过后，定稿版开题报告由研究生、导师各存档一份，无需上传系统。
-          \\[0.5\baselineskip]
+
           Upon passing the proposal,
           the final version of this report shall be archived by the
           graduate student and his/her supervisors for future reference.
@@ -174,7 +182,7 @@
     \item 同等学力研究生开题答辩采用会议形式，
           硕士邀请至少3名相关学科/专业领域具有硕士研究生指导资格的专家。
           博士邀请5名相关学科/专业领域具有博士研究生指导资格的专家。
-          \\[0.5\baselineskip]
+
           The capstone presentation adopts a conference format,
           and at least three experts with master's degree guidance
           qualifications in relevant disciplines and professional fields
@@ -193,7 +201,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 填写说明：请在下面表格中填写你的信息，注意事项：
-% 1. 论文题目如果太长，使用 \\ 手动换行 (见示例)
+% 1. 论文题目如果太长，使用 \newline 手动换行 (见示例)
 % 2. 本模板提供了 \mychecked 命令用来打勾，
 %    \myunchecked 命令用来画出未打勾的方框
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,9 +342,12 @@ I will bear the corresponding liabilities and consequences.
 
 \vspace{\baselineskip}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 填写说明：记得填写姓名和日期
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 学生签字/Signature of Student： 交通大学
 \hfill              
-日期/Date： 202Y-MM-DD
+日期/Date： 20YY-MM-DD
 
 \end{document}

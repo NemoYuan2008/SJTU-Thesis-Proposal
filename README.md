@@ -1,10 +1,17 @@
 # SJTU Thesis Proposal 上海交大开题报告模板
 
-本仓库是上海交通大学开题报告 LaTeX（非官方）模板，基于上海交通大学研究生院官网给出的 [word 模板](https://www.gs.sjtu.edu.cn/xzzx/pygl) 制作。
+本仓库含有上海交通大学**开题报告**以及**博士生年度进展报告** LaTeX 模板，基于上海交通大学研究生院官网给出的 [word 模板](https://www.gs.sjtu.edu.cn/xzzx/pygl) 制作。
 
 本模板**仅支持 XeTeX 引擎和 UTF-8 编码，请使用 XeLaTeX 编译！！！**
 
 如果你觉得本仓库有用，请点个 star 小星星 :star::star::star: 支持一下 :star_struck:
+
+## 模板内容
+
+本仓库中含有**开题报告**以及**博士生年度进展报告**模板：
+
+- 若需要**开题报告**模板，请使用 `main.tex` 文件；
+- 若需要**博士生年度进展报告**模板，请使用 `main_phd_mid_report` 文件。
 
 ## 免责声明
 
@@ -20,7 +27,7 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 
 ## 使用方法
 
-**请仔细阅读 `main.tex` 中的注释，按照注释的提示进行文档的编写。**
+**请仔细阅读对应 `.tex` 文件中的注释，按照注释的提示进行文档的编写。**
 
 ## 编译方法
 
@@ -28,10 +35,8 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 
 ### Overleaf 用户
 
-直接点击 [Overleaf 模板链接](https://www.overleaf.com/latex/templates/sjtu-thesis-proposal/wpxfhqvwdbwc) 使用，**注意将编译器设置为 XeLaTeX**。
+从 GitHub 下载下来的压缩包上传至 Overleaf 平台，**注意将编译器设置为 XeLaTeX**。
 设置编译器的方法请参见 [Overleaf 官方文档](https://www.overleaf.com/learn/how-to/Changing_compiler)。
-
-也可将从 GitHub 下载下来的压缩包上传至 Overleaf 平台。
 
 ### 本地 VSCode 用户
 
@@ -41,7 +46,9 @@ Overleaf 用户可直接点击链接使用: [Overleaf 模板链接](https://www.
 
 ### 从命令行编译
 
-使用 `latexmk -xelatex main` 命令来进行编译。
+使用 `latexmk -xelatex main` 命令来编译开题报告模板。
+
+使用 `latexmk -xelatex main_phd_mid_report` 命令来编译博士生年度进展报告模板。
 
 ## 贡献
 

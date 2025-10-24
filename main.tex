@@ -3,7 +3,7 @@
 \usepackage{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage[style=gb7714-2015]{biblatex}
@@ -35,11 +35,23 @@
 % 一级标题仿宋加粗、悬挂缩进
 % 二级和三级标题楷书加粗，与正文字体一致
 \ctexset{
-    section / name = {,、},     % 一级标题编号后的顿号
-    section / aftername = {},   % 取消顿号后的间距
-    section / format = \fangsong\bfseries\linespread{1.25}\selectfont,
-    subsection / format = \kaishu\bfseries,
-    subsubsection / format = \kaishu\bfseries,
+    section = {
+        name = {,、},     % 一级标题编号后的顿号
+        aftername = {},   % 取消顿号后的间距
+        format = \fangsong\bfseries\linespread{1.25}\selectfont,
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
+    subsection = {
+        format = \kaishu\bfseries,
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
+    subsubsection = {
+        format = \kaishu\bfseries,
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
 }
 
 
@@ -209,7 +221,6 @@
     \end{tabular}
 \end{table}
 
-\vspace{-1.3cm}
 
 % 设置后续正文的字体：楷书、0.5倍段间距
 % 行距倍数 1.75 为与官方 word 版仔细比对后选取的经验值

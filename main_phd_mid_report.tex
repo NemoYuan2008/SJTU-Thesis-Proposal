@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 这是博士生年度进展报告的 LaTeX 模板
-% 如需开题报告模板，请使用 main.tex
+% 如需其他模板，请阅读 README.md 文件中的说明
 % 使用时请仔细阅读注释并按照要求填写
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -21,15 +21,13 @@
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
-% 设置页边距
 \geometry{
-    top    = 2.5cm,
-    bottom = 2.5cm,
-    left   = 2.8cm,
-    right  = 2.8cm,
+    top    = 2.1cm,
+    bottom = 2.1cm,
+    left   = 1.27cm,
+    right  = 1.27cm,
 }
 
-% 使用 Times Roman 西文字体
 \setmainfont{texgyretermes}[
     Extension      = .otf,
     UprightFont    = *-regular,
@@ -49,18 +47,18 @@
         name = {,、},     % 一级标题编号后的顿号
         aftername = {},   % 取消顿号后的间距
         format = \fangsong\bfseries\linespread{1.25}\selectfont,
-        beforeskip = 0pt,
-        afterskip = 0pt,
+        beforeskip = 24bp,
+        afterskip = 6bp,
     },
     subsection = {
         format = \kaishu\bfseries,
-        beforeskip = 0pt,
-        afterskip = 0pt,
+        beforeskip = 12bp,
+        afterskip = 6bp,
     },
     subsubsection = {
         format = \kaishu\bfseries,
-        beforeskip = 0pt,
-        afterskip = 0pt,
+        beforeskip = 6bp,
+        afterskip = 6bp,
     },
 }
 
@@ -68,9 +66,6 @@
 
 \lhead{}
 \rhead{}
-\chead{\zihao{-5}\color{gray}上海交通大学博士生年度进展报告 Annual Progress Review for SJTU Doctoral Student}
-\cfoot{\zihao{-5}\color{gray}\thepage\ / \pageref*{LastPage}}
-
 
 \begin{document}
 
@@ -105,22 +100,22 @@
     \renewcommand{\arraystretch}{1.7}
     % 左栏中文为楷书加粗四号字，英文为小四加粗；右栏为仿宋小四加下划线
     \zihao{-4}
-    \begin{tabular}{>{\bfseries\kaishu}l>{\fangsong}m{9.3cm}}
-        {\zihao{4}学号}~~Student ID
+    \begin{tabular}{>{\bfseries\kaishu}l>{\fangsong}m{10cm}}
+        {\zihao{4}学号}~~Student ID:
             & 012345678912\\\cline{2-2}
-        {\zihao{4}姓名}~~Name
-            & 交通大学\\\cline{2-2}
-        {\zihao{4}导师}~~Supervisor(s)
+        {\zihao{4}姓名}~~Name:
+            & 我的姓名\\\cline{2-2}
+        {\zihao{4}导师}~~Supervisor(s):
             & 我的导师\\\cline{2-2}
-        {\zihao{4}专业}~~Major
+        {\zihao{4}专业}~~Major:
             & 我的专业\\\cline{2-2}
-        {\zihao{4}学院}~~School
+        {\zihao{4}学院}~~School:
             & 我的学院\\\cline{2-2}
-        {\zihao{4}入学方式}~~Enrollment
+        {\zihao{4}入学方式}~~Enrollment:
             & 直博生 Doctoral Student after Bachelor's\\\cline{2-2}
-        {\zihao{4}学生类别}~~Degree Program
+        {\zihao{4}学生类别}~~Degree Program:
             & 学术型 Academic\\\cline{2-2}
-        {\zihao{4}考核日期}~~Date
+        {\zihao{4}考核日期}~~Date:
             & 20YY年MM月DD日\\\cline{2-2}
     \end{tabular}
 \end{table}
@@ -128,12 +123,16 @@
 
 \clearpage
 
+\pagestyle{fancy}
+\newgeometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm}
+\chead{\zihao{-5}\color{gray}上海交通大学博士生年度进展报告~~Annual Progress Review for SJTU Doctoral Student}
+\cfoot{}
+\fancyfootoffset{0pt}
 
 \begin{center}
     \zihao{-3}
-    \vspace*{0.5cm}
     {\heiti 填\quad 报\quad 说\quad 明}\par
-    \vspace{0.66cm}
+    \vspace{5pt}
     {\bfseries Instruction}
 \end{center}
 
@@ -171,15 +170,17 @@
 \end{enumerate}
 
 \clearpage
-
-
-\pagestyle{fancy}
+\restoregeometry
 \setcounter{page}{1}
+\cfoot{\zihao{-5}\color{gray}\bfseries\thepage\ / \pageref*{LastPage}}
+\fancyfootoffset{0pt}
 
 
 \begin{center}
+    \vspace*{-1.3cm}
     \fangsong\bfseries\zihao{4}
     博士生年度进展报告 Annual Progress Report
+    \vspace{-12pt}
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -215,10 +216,9 @@
 
 \vspace{-12pt}
 
-% 设置后续正文的字体：楷书、0.5倍段间距
+% 设置后续正文的字体：楷书
 % 行距倍数 1.75 为与官方 word 版仔细比对后选取的经验值
 \kaishu
-\setlength{\parskip}{0.5\baselineskip}
 \linespread{1.75}\selectfont
 
 % 设置浮动体内的字体为楷书小四号字，与正文一致
@@ -228,8 +228,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 填写说明：开始撰写你的开题报告。
-% 1. \section 里是官方开题报告模板里的填写要求，已为你准备好。
+% 填写说明：开始撰写你的报告正文，注意事项：
+% 1. \section 里是官方报告模板里的填写要求，已为你准备好。
 % 2. 请接在后面填写你的正文内容，具体请仔细阅读示例和注释。
 % 3. 你可以使用 \subsection 和 \subsubsection 命令来使用小标题
 %    所有小标题都可以使用 \label 打标签，并用 \ref 进行引用
@@ -238,14 +238,41 @@
 
 \section{报告正文 Report。\mdseries 请阐述开题报告或上次年度进展报告以来学位论文研究工作的进展情况及所取得的阶段性成果，并简述下一年度研究计划，不少于3,000汉字。Please summarize your research progress and achievements since your dissertation proposal or last annual progress review, as well as your plan for next step. No less than 2,400 words if written in English.}
 
-报告正文\cite{ZJSD}。
+制作开题报告和中期报告 \LaTeX{} 模板的初衷是为了大家能
+方便地输入数学公式 $c^2 = a^2 + b^2$、
+进行文献引用\cite{ZJSD}、
+进行格式排版（本模板提供了二级和三级标题的支持，这在官方 Word 模板中是没有的），
+以及将来使用 \LaTeX{} 模板撰写学位大论文时能直接复用这些内容。
 
+
+引用文献时，请将参考文献添加到项目根目录中的 \texttt{ref.bib} 文件中，
+然后在正文中使用 \verb|\cite{}| 命令，例如\cite{SPDZ}。
+这样引用是上标形式的，如果需要平行形式的引用，请使用
+\verb|\parencite{}| 命令，效果如 \parencite{SPDZ}。
+
+
+\subsection{二级标题}\label{sub}
+
+你还可以使用二级标题和三级标题，
+并使用 \LaTeX{} 的 \verb|\label| 和 \verb|\ref| 命令进行引用，
+如第 \ref{sub} 节和第 \ref{subsub} 节所示。
+
+
+
+\subsubsection{三级标题}\label{subsub}
+
+最后要打印出参考文献列表，如下所示。
+如果你的报告中没有引用任何文献，将下面的参考文献列表部分删除即可。
+
+
+%%%%%%%%%%%%%%%%%%%%% 参考文献列表部分 %%%%%%%%%%%%%%%%%%%%%
 \vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
     \linespread{1.25}\selectfont    % 参考文献行距小一点
     参考文献 References: 
     \printbibliography[heading=none]
 }
+%%%%%%%%%%%%%%%%%%%%% 参考文献列表结束 %%%%%%%%%%%%%%%%%%%%%
 
 
 \section{成果清单 List of Achievements。\mdseries 请列出开题报告以来或上次年度进展报告以来新发表的学术论文、授权专利、国际会议论文、专著等成果清单。作者、标题、杂志、卷、期、页码等信息请填写完整。Please provide a list of academic publications (papers, patents, international academic conference talks, monographs, etc.) since your dissertation proposal or last annual progress review. Information on author list, title, journal name, volume, number, and pages shall be complete.}
@@ -257,10 +284,8 @@
 
 
 
-
-% 剩下的所有内容均为仿宋加粗小四号字
+\vspace{12pt}
 \normalfont\zihao{-4}\bfseries\fangsong
-\noindent
 本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
 I hereby declare and confirm that the details 
 provided in this Form are valid and accurate. 
@@ -275,7 +300,7 @@ I will bear the corresponding liabilities and consequences.
 % 填写说明：记得填写姓名和日期
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
-学生签字/Signature of Student：交通大学
+学生签字/Signature of Student：我的姓名
 \hfill              
 日期/Date： 20YY-MM-DD
 

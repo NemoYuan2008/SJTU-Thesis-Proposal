@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 这是上海交通大学研究生学位论文开题报告的 LaTeX 模板
-% 如需博士生年度进展报告模板，请使用 main_phd_mid_report.tex
+% 这是开题报告的 LaTeX 模板
+% 如需其他模板，请阅读 README.md 文件中的说明
 % 使用时请仔细阅读注释并按照要求填写
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -18,7 +18,6 @@
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
-% 设置页边距
 \geometry{
     top    = 2.5cm,
     bottom = 2.5cm,
@@ -26,7 +25,6 @@
     right  = 2.8cm,
 }
 
-% 使用 Times Roman 西文字体
 \setmainfont{texgyretermes}[
     Extension      = .otf,
     UprightFont    = *-regular,
@@ -46,6 +44,7 @@
         name = {,、},     % 一级标题编号后的顿号
         aftername = {},   % 取消顿号后的间距
         format = \fangsong\bfseries\linespread{1.25}\selectfont,
+        % 全设置为 0pt 是因为后面用了 \parskip
         beforeskip = 0pt,
         afterskip = 0pt,
     },
@@ -104,7 +103,7 @@
         {\zihao{4}学号}~~Student ID
             & 012345678912\\\cline{2-2}
         {\zihao{4}姓名}~~Name
-            & 交通大学\\\cline{2-2}
+            & 我的姓名\\\cline{2-2}
         {\zihao{4}学生类别}~~Degree Program
             & 学术型博士生 Academic Doctoral Student\\\cline{2-2}
         {\zihao{4}学习形式}~~Study Mode
@@ -250,7 +249,7 @@
 %    所有小标题都可以使用 \label 打标签，并用 \ref 进行引用
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\vspace{-\parskip}
 \section{请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
     博士生不少于 10,000 汉字，硕士生不少于 5,000 汉字。
     请在文中标注参考文献。 
@@ -262,12 +261,17 @@
     and 4,000 words for master students if written in English.}
 
 
-让我来综述一下课题国内外研究进展、现状、挑战与意义。
-这里要写好多好多字，博士生要写一万字，硕士生要写五千字，
-所以我们要多引用一些文献来达到字数要求。
-让我们引用著名的 SPDZ 协议 \cite{SPDZ}。
-当然我们也可以引用一个中文文献 \cite{ZJSD}。
-让我们写一点数学公式 $c^2 = a^2 + b^2$。
+制作开题报告和中期报告 \LaTeX{} 模板的初衷是为了大家能
+方便地输入数学公式 $c^2 = a^2 + b^2$、
+进行文献引用\cite{ZJSD}、
+进行格式排版（本模板提供了二级和三级标题的支持，这在官方 Word 模板中是没有的），
+以及将来使用 \LaTeX{} 模板撰写学位大论文时能直接复用这些内容。
+
+
+引用文献时，请将参考文献添加到项目根目录中的 \texttt{ref.bib} 文件中，
+然后在正文中使用 \verb|\cite{}| 命令，例如\cite{SPDZ}。
+这样引用是上标形式的，如果需要平行形式的引用，请使用
+\verb|\parencite{}| 命令，效果如 \parencite{SPDZ}。
 
 
 \subsection{二级标题}\label{sub}
@@ -283,12 +287,14 @@
 最后要打印出参考文献列表，如下所示。
 
 
+%%%%%%%%%%%%%%%%%%%%% 参考文献列表部分 %%%%%%%%%%%%%%%%%%%%%
 \vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
     \linespread{1.25}\selectfont    % 参考文献行距小一点
     参考文献 References: 
     \printbibliography[heading=none]
 }
+%%%%%%%%%%%%%%%%%%%%% 参考文献列表结束 %%%%%%%%%%%%%%%%%%%%%
 
 
 \section{课题研究目标、主要研究内容和拟解决的关键问题。 
@@ -346,7 +352,7 @@ I will bear the corresponding liabilities and consequences.
 % 填写说明：记得填写姓名和日期
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
-学生签字/Signature of Student： 交通大学
+学生签字/Signature of Student： 我的姓名
 \hfill              
 日期/Date： 20YY-MM-DD
 

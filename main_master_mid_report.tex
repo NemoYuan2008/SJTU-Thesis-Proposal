@@ -297,14 +297,18 @@ I will bear the corresponding liabilities and consequences.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 填写说明：记得填写姓名和日期
+% 填写说明：填写姓名和日期
+% 对于姓名的填写，有两种方法：
+% 1. 插入你的手写签名图片，即在下面的 \includegraphics 命令中
+%    将 figures/your_signature.png 替换为你的签名图片路径
+% 2. 直接打字填写你的姓名，即将下面的 
+%    $\vcenter{\hbox{\includegraphics[...]{...}}}$
+%    这一整行删除，直接替换成你的姓名
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 学生签字/Signature of Student：
-$
-\vcenter{\hbox{\includegraphics[height=0.5cm, keepaspectratio]{figures/your_signature.png}}}  % 插入签名图片
-$
-\hfill              
+$\vcenter{\hbox{\includegraphics[height=0.5cm, keepaspectratio]{figures/your_signature.png}}}$  % 插入手写签名图片
+\hfill
 日期/Date： 20YY-MM-DD
 
 \end{document}

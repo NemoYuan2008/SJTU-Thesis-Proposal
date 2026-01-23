@@ -1,0 +1,320 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SJTU Graduate Thesis Proposal Template Style File
+% 上海交通大学研究生学位论文开题报告模板样式文件
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sjtu-thesis-proposal}[2026/01/23 SJTU Thesis Proposal Template]
+
+% --- 宏包加载 ---
+\RequirePackage{geometry}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{array}
+\RequirePackage[style=gb7714-2015]{biblatex}
+\RequirePackage{etoolbox}
+\RequirePackage[hidelinks]{hyperref}
+
+% --- 页面设置 ---
+\geometry{
+    top    = 2.5cm,
+    bottom = 2.5cm,
+    left   = 2.8cm,
+    right  = 2.8cm,
+}
+
+% --- 字体设置 ---
+\setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+]
+
+% --- 自定义命令 ---
+% 定义"研究课题来源"表格里用到的勾和框
+\newcommand*{\myunchecked}{$\square$\kern.65pt}  % 未打勾的方框
+\newcommand*{\mychecked}{\checkmark}              % 打勾
+
+% 重定义日期格式为 YYYY-MM-DD
+\renewcommand{\today}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
+
+% --- 标题样式设置 ---
+% 一级标题仿宋加粗、悬挂缩进
+% 二级和三级标题楷书加粗，与正文字体一致
+\ctexset{
+    section = {
+        name = {,、},     % 一级标题编号后的顿号
+        aftername = {},   % 取消顿号后的间距
+        format = \fangsong\bfseries\linespread{1.25}\selectfont,
+        % 全设置为 0pt 是因为后面用了 \parskip
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
+    subsection = {
+        format = \kaishu\bfseries,
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
+    subsubsection = {
+        format = \kaishu\bfseries,
+        beforeskip = 0pt,
+        afterskip = 0pt,
+    },
+}
+
+% --- 参考文献环境定义（整体左缩进2字符）---
+\defbibenvironment{bibliography}
+  {\list{\printtext[labelnumberwidth]{\printfield{labelprefix}\printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \addtolength{\leftmargin}{2em}% 额外左缩进2字符
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
+% --- 列表样式设置 ---
+\setlist{nosep}
+
+% --- 定义封面信息变量 ---
+\newcommand{\@studentid}{}
+\newcommand{\@name}{}
+\newcommand{\@degreeprogram}{}
+\newcommand{\@studymode}{}
+\newcommand{\@supervisor}{}
+\newcommand{\@thesistitle}{}
+\newcommand{\@school}{}
+\newcommand{\@major}{}
+\newcommand{\@proposaldate}{}
+\newcommand{\@venue}{}
+\newcommand{\@proposedtitle}{}
+\newcommand{\@signatureimage}{}
+\newcommand{\@signaturetext}{}
+\newcommand{\@signaturedate}{}
+
+% 提供用户设置命令
+\newcommand{\studentid}[1]{\renewcommand{\@studentid}{#1}}
+\newcommand{\name}[1]{\renewcommand{\@name}{#1}}
+\newcommand{\degreeprogram}[1]{\renewcommand{\@degreeprogram}{#1}}
+\newcommand{\studymode}[1]{\renewcommand{\@studymode}{#1}}
+\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
+\newcommand{\thesistitle}[1]{\renewcommand{\@thesistitle}{#1}}
+\newcommand{\school}[1]{\renewcommand{\@school}{#1}}
+\newcommand{\major}[1]{\renewcommand{\@major}{#1}}
+\newcommand{\proposaldate}[1]{\renewcommand{\@proposaldate}{#1}}
+\newcommand{\venue}[1]{\renewcommand{\@venue}{#1}}
+\newcommand{\proposedtitle}[1]{\renewcommand{\@proposedtitle}{#1}}
+\newcommand{\signatureimage}[1]{\renewcommand{\@signatureimage}{#1}}
+\newcommand{\signaturetext}[1]{\renewcommand{\@signaturetext}{#1}}
+\newcommand{\signaturedate}[1]{\renewcommand{\@signaturedate}{#1}}
+
+% --- 生成封面页 ---
+\newcommand{\makecover}{
+    \pagestyle{empty}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=8.5cm]{./styles/sjtu-logo.pdf}
+    \end{figure}
+
+    \begin{center}
+        \bfseries\songti
+        \vspace{-1.0cm}
+        \zihao{1} 研究生学位论文开题报告\par\vspace{18.8pt}
+        \zihao{-3} Graduate Thesis/Dissertation Proposal
+        \vspace{0.5cm}
+    \end{center}
+
+    \begin{table}[h]
+        \centering
+        \renewcommand{\arraystretch}{1.7}
+        \zihao{-4}
+        \begin{tabular}{>{\bfseries\kaishu}l>{\fangsong}m{9.3cm}}
+            {\zihao{4}学号}~~Student ID
+                & \@studentid\\\cline{2-2}
+            {\zihao{4}姓名}~~Name
+                & \@name\\\cline{2-2}
+            {\zihao{4}学生类别}~~Degree Program
+                & \@degreeprogram\\\cline{2-2}
+            {\zihao{4}学习形式}~~Study Mode
+                & \@studymode\\\cline{2-2}
+            {\zihao{4}导师}~~Supervisor(s)
+                & \@supervisor\\\cline{2-2}
+            {\zihao{4}论文题目}~~Thesis Title
+                & \@thesistitle\\\cline{2-2}
+            {\zihao{4}学院}~~School
+                & \@school\\\cline{2-2}
+            {\zihao{4}专业}~~Major
+                & \@major\\\cline{2-2}
+            {\zihao{4}开题日期}~~Date
+                & \ifdefempty{\@proposaldate}{\today}{\@proposaldate}\\\cline{2-2}
+            {\zihao{4}开题地点}~~Venue
+                & \@venue\\\cline{2-2}
+        \end{tabular}
+        \vspace{-5cm}
+    \end{table}
+
+    \clearpage
+}
+
+% --- 生成填报说明页 ---
+\newcommand{\makeinstruction}{
+    \begin{center}
+        \zihao{-3}
+        {\heiti 填\quad 报\quad 说\quad 明}\par
+        \vspace{0.66cm}
+        {\bfseries Instruction}
+    \end{center}
+
+    \begin{enumerate}[parsep=.5\baselineskip]
+        \fangsong
+        \item 校本部研究生的开题报告应通过%
+              \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{数字交大}}%
+              在线提交申请，填写本表并上传系统。
+              特殊情况下经研究生院事先同意，可不上传系统，
+              并使用《上海交通大学研究生论文开题评审表》完成评审。
+
+              The application for thesis/dissertation proposal
+              should be submitted online through
+              \href{http://my.sjtu.edu.cn/}{\color{blue}\underline{My SJTU}}.
+              The student shall fill this form and upload it in the system.
+              Under special circumstance,
+              this form does not need to be uploaded
+              and the review can be proceeded with the review form
+              with prior consent from the graduate school.
+
+        \item 开题报告为A4大小，于左侧装订成册。各栏空格不够时，请自行加页。
+              考核前提前一周送交导师、评审专家审阅。
+
+              This form should be printed with A4 papers
+              and bound together on the left.
+              If the space left is not enough,
+              please feel free to add extra pages.
+              The print version shall be sent to the supervisor,
+              and the review committee members for review
+              at least one week before the oral presentation.
+
+        \item 博士生导师可以根据博士生学位论文选题情况自行确定是否进行开题查新，
+              博士学位论文开题查新报告应由查新工作站提供。
+
+              The supervisor should decide, based on the proposed topics,
+              whether a novelty assessment report is needed or not,
+              which should be conducted by an authorized
+              novelty assessment department.
+
+        \item 开题报告通过后，定稿版开题报告由研究生、导师各存档一份，无需上传系统。
+
+              Upon passing the proposal,
+              the final version of this report shall be archived by the
+              graduate student and his/her supervisors for future reference.
+
+        \item 同等学力研究生开题答辩采用会议形式，
+              硕士邀请至少3名相关学科/专业领域具有硕士研究生指导资格的专家。
+              博士邀请5名相关学科/专业领域具有博士研究生指导资格的专家。
+
+              The capstone presentation adopts a conference format,
+              and at least three experts with master's degree guidance
+              qualifications in relevant disciplines and professional fields
+              are invited for the master's degree.
+              And five experts with doctoral guidance qualifications
+              in relevant disciplines/professional fields are invited
+              for doctoral guidance.
+    \end{enumerate}
+
+    \clearpage
+}
+
+% --- 课题来源变量 ---
+\newcommand{\@sourcensfc}{\myunchecked}
+\newcommand{\@sourcenssfc}{\myunchecked}
+\newcommand{\@sourcekeyproject}{\myunchecked}
+\newcommand{\@sourceothergov}{\myunchecked}
+\newcommand{\@sourceindustry}{\myunchecked}
+\newcommand{\@sourceselfproposed}{\myunchecked}
+\newcommand{\@sourceother}{\myunchecked}
+\newcommand{\@sourceothername}{}
+
+% 提供课题来源设置命令
+\newcommand{\sourcensfc}[1]{\renewcommand{\@sourcensfc}{#1}}
+\newcommand{\sourcenssfc}[1]{\renewcommand{\@sourcenssfc}{#1}}
+\newcommand{\sourcekeyproject}[1]{\renewcommand{\@sourcekeyproject}{#1}}
+\newcommand{\sourceothergov}[1]{\renewcommand{\@sourceothergov}{#1}}
+\newcommand{\sourceindustry}[1]{\renewcommand{\@sourceindustry}{#1}}
+\newcommand{\sourceselfproposed}[1]{\renewcommand{\@sourceselfproposed}{#1}}
+\newcommand{\sourceother}[1]{\renewcommand{\@sourceother}{#1}}
+\newcommand{\sourceothername}[1]{\renewcommand{\@sourceothername}{#1}}
+
+% --- 生成课题基本信息表 ---
+\newcommand{\makeprojectinfo}{
+    \pagestyle{plain}
+    \setcounter{page}{1}
+
+    \begin{table}[h]
+        \centering
+        \zihao{-4}\fangsong
+        \linespread{1.68}\selectfont
+        \begin{tabular}{|m{3.3cm}|m{11cm}|}
+            \hline
+            论文题目\newline Proposed Title &
+            \ifdefempty{\@proposedtitle}{\@thesistitle}{\@proposedtitle}\\
+            \hline
+            研究课题来源\newline Source of Research\newline Project &
+            请在合适选项前画 \checkmark~~Please select proper options by ``\checkmark''.\newline
+            \@sourcensfc\ 国家自然科学基金课题 NSFC Research Grants\newline
+            \@sourcenssfc\ 国家社会科学基金 National Social Science Fund of China\newline
+            \@sourcekeyproject\ 国家重大科研专项 National Key Research Projects\newline
+            \@sourceothergov\ 其它纵向科研课题 Other Governmental Research Grants\newline
+            \@sourceindustry\ 企业横向课题 R\&D Projects from Industry\newline
+            \@sourceselfproposed\ 自拟课题 Self-proposed Project\newline
+            \@sourceother\ 其它 Other\enspace
+            \vtop{\hbox{\@sourceothername}\hbox{\rule[18pt]{8cm}{.25pt}}}\vspace{-12pt}
+            \\\hline
+        \end{tabular}
+    \end{table}
+}
+
+% --- 初始化正文格式 ---
+\newcommand{\initbodyformat}{
+    % 设置正文的字体：楷书、0.5倍段间距
+    % 行距倍数 1.75 为与官方 word 版仔细比对后选取的经验值
+    \kaishu
+    \setlength{\parskip}{0.5\baselineskip}
+    \linespread{1.75}\selectfont
+
+    % 设置浮动体内的字体为楷书小四号字，与正文一致
+    \makeatletter
+    \appto{\@floatboxreset}{\kaishu\zihao{-4}}
+    \makeatother
+}
+
+% --- 生成签字栏 ---
+\newcommand{\makesignature}{
+    \vspace{\baselineskip}
+
+    % 剩下的所有内容均为仿宋加粗小四号字
+    \normalfont\zihao{-4}\bfseries\fangsong
+    \noindent
+    本人承诺：开题报告中的内容真实无误，若有不实，愿承担相应的责任和后果。
+    I hereby declare and confirm that the details
+    provided in this Form are valid and accurate.
+    If anything untruthful found,
+    I will bear the corresponding liabilities and consequences.
+
+    \vspace{\baselineskip}
+
+    \noindent
+    学生签字/Signature of Student：
+    \ifdefempty{\@signatureimage}
+        {\ifdefempty{\@signaturetext}{\rule{4cm}{0.4pt}}{\@signaturetext}}
+        {$\vcenter{\hbox{\includegraphics[height=0.5cm, keepaspectratio]{\@signatureimage}}}$}
+    \hfill
+    日期/Date： \ifdefempty{\@signaturedate}{\today}{\@signaturedate}
+}
+
+\endinput

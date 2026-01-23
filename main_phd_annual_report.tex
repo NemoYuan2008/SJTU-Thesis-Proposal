@@ -1,13 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 上海交通大学硕士中期检查报告 LaTeX 模板
-% SJTU Master Mid-term Report LaTeX Template
+% 上海交通大学博士生年度进展报告 LaTeX 模板
+% SJTU PhD Annual Progress Report LaTeX Template
 % 使用时请仔细阅读注释并按照要求填写
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
 
 % 加载模板样式文件
-\usepackage{sjtu-mid-report}
+\usepackage{sjtu-phd-annual-report}
 
 % 加载参考文献
 \addbibresource{ref.bib}
@@ -16,13 +16,14 @@
 %                      填写封面信息
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% 1. 学生类别 Degree Program (请填写以下两个中的一个):
-%      学术型硕士生 Academic Master
-%      专业型硕士生 Professional Master
+% 1. 入学方式 Enrollment (请填写以下三个中的一个):
+%      直博生 Doctoral Student after Bachelor's
+%      普博生 Regular Doctoral Student
+%      硕博连读生 Combined Master and Doctoral
 %
-% 2. 学习形式 Study Mode (请填写以下两个中的一个):
-%      全日制 Full-time
-%      非全日制 Part-time
+% 2. 学生类别 Degree Program (请填写以下两个中的一个):
+%      学术型 Academic
+%      专业型 Professional
 %
 % 3. 论文题目: 如需手动换行，请使用 \newline
 %
@@ -33,13 +34,13 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\studentid{123456789012}
-\name{你的名字}
-\degreeprogram{专业型硕士生 Professional Master}
-\studymode{全日制 Full-time}
+\studentid{012345678901}
+\name{你的姓名}
 \supervisor{你的导师}
 \major{你的专业}
 \school{你的学院}
+\enrollment{直博生 Doctoral Student after Bachelor's}
+\degreeprogram{学术型 Academic}
 \examdate{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,7 +109,7 @@
 %                    正文内容开始
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{报告正文 Report。\mdseries 请阐述开题报告以来学位论文研究工作的进展情况及所取得的阶段性成果，并简述下一阶段研究计划，不少于4000汉字。Please summarize your research progress and achievements since your thesis proposal as well as your plan for next step. No less than 3200 words if written in English.}
+\section{报告正文 Report。\mdseries 请阐述开题报告或上次年度进展报告以来学位论文研究工作的进展情况及所取得的阶段性成果，并简述下一年度研究计划，不少于3,000汉字。Please summarize your research progress and achievements since your dissertation proposal or last annual progress review, as well as your plan for next step. No less than 2,400 words if written in English.}
 
 制作开题报告和中期报告 \LaTeX{} 模板的初衷是为了大家能
 方便地输入数学公式 $c^2 = a^2 + b^2$、
@@ -118,9 +119,9 @@
 
 
 引用文献时，请将参考文献添加到项目根目录中的 \texttt{ref.bib} 文件中，
-然后在正文中使用 \verb|\cite| 命令，例如\cite{SPDZ}。
+然后在正文中使用 \verb|\cite{}| 命令，例如\cite{SPDZ}。
 这样引用是上标形式的，如果需要平行形式的引用，请使用
-\verb|\parencite| 命令，效果如 \parencite{SPDZ}。
+\verb|\parencite{}| 命令，效果如 \parencite{SPDZ}。
 
 
 \subsection{二级标题}\label{sub}
@@ -137,7 +138,6 @@
 如果你的报告中没有引用任何文献，将下面的参考文献列表部分删除即可。
 
 
-
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表部分 %%%%%%%%%%%%%%%%%%%%%
 \vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
@@ -148,7 +148,7 @@
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表结束 %%%%%%%%%%%%%%%%%%%%%
 
 
-\section{成果清单 List of Achievements。\mdseries 请列出开题报告以来或上次年度进展报告以来新发表的学术论文、授权专利、国际会议论文、专著等成果清单。作者、标题、杂志、卷、期、页码等信息请填写完整。Please provide a list of academic publications (papers, patents, international academic conference talks/presentations, monographs, etc.) since your thesis proposal. Information on author list, title, journal name, volume, number, and pages shall be complete.}
+\section{成果清单 List of Achievements。\mdseries 请列出开题报告以来或上次年度进展报告以来新发表的学术论文、授权专利、国际会议论文、专著等成果清单。作者、标题、杂志、卷、期、页码等信息请填写完整。Please provide a list of academic publications (papers, patents, international academic conference talks, monographs, etc.) since your dissertation proposal or last annual progress review. Information on author list, title, journal name, volume, number, and pages shall be complete.}
 
 \begin{enumerate}[label={[\arabic*]}]
     \item 成果1

@@ -1,4 +1,4 @@
-# 上海交大 开题报告/中期报告 LaTeX 模板
+# 上海交大 开题报告/中期报告/年度进展 LaTeX 模板
 
 本仓库含有上海交大**研究生开题报告**、**硕士生中期报告**、**博士生年度进展报告** LaTeX 模板，基于上海交通大学研究生院官网给出的 [word 模板](https://www.gs.sjtu.edu.cn/xzzx/pygl) 制作。
 
@@ -10,7 +10,7 @@
 
 - 若需要**开题报告**模板，请使用 `main.tex` 文件；
 - 若需要**硕士生中期报告**模板，请使用 `main_master_mid_report.tex` 文件；
-- 若需要**博士生年度进展报告**模板，请使用 `main_phd_mid_report.tex` 文件。
+- 若需要**博士生年度进展报告**模板，请使用 `main_phd_annual_report.tex` 文件。
 
 ## 免责声明
 
@@ -26,13 +26,13 @@
 
 1. 从 GitHub 下载项目压缩包（点击绿色 Code 按钮，选择 Download ZIP）并上传至 Overleaf 平台（官方 Overleaf 或学校的 LaTeX 助手均可），点击创建新项目-上传项目，并选择下载下来的压缩包
 2. **（重要）** 打开项目后，点击左上角菜单，将 编译器 设置为 XeLaTeX。
-3. **（重要）** 同样在菜单中，将 主文档 (main tex) 设置为你需要的模板对应的 tex 文件（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生年度进展报告为 `main_phd_mid_report.tex`）。
+3. **（重要）** 同样在菜单中，将 主文档 (main tex) 设置为你需要的模板对应的 tex 文件（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生年度进展报告为 `main_phd_annual_report.tex`）。
 4. 回到编辑器界面，打开在前一步中所选的 tex 文件，然后再点击重新编译。
 
 ### 本地 VSCode 用户
 
 1. 安装 LaTeX Workshop 插件，使用 VSCode 打开文件夹
-2. 打开你需要的模板对应的 tex 文件 `main.tex`（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生中期报告为 `main_phd_mid_report.tex`）。
+2. 打开你需要的模板对应的 tex 文件 `main.tex`（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生中期报告为 `main_phd_annual_report.tex`）。
 3. 在左边栏中点击 TeX 图标，展开 `Build LaTeX project`，选择 `Recipe: latexmk (xelatex)` 进行编译。
 4. （可选）在 VSCode 设置中搜索 `latex-workshop.latex.recipe.default` 并将其改为 `lastUsed` 以便一直使用该选项编译。
 
@@ -46,7 +46,7 @@
 
 ## 许可证
 
-上海交通大学校徽校名图片的版权 (`figures/sjtu-logo.pdf`) 归上海交通大学所有。
+上海交通大学校徽的版权归上海交通大学所有。
 
 其余部分使用 MIT 许可证授权。
 

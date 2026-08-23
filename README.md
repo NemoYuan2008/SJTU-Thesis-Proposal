@@ -20,7 +20,7 @@
 
 ## 编译方法
 
-这里以 Overleaf 和 VSCode 为例说明。注意如果在本地使用需安装最新版 TeXLive 套装。使用其他编辑器的用户可参考相应编辑器的使用说明，只需注意将编译器设置为 XeLaTeX 即可。
+这里以 Overleaf 和 VSCode 为例说明。注意如果在本地使用需安装最新版 TeXLive 套装。使用其他编辑器的用户可参考相应编辑器的使用说明，需注意将编译器设置为 XeLaTeX。
 
 ### Overleaf 用户
 
@@ -32,9 +32,19 @@
 ### 本地 VSCode 用户
 
 1. 安装 LaTeX Workshop 插件，使用 VSCode 打开文件夹
-2. 打开你需要的模板对应的 tex 文件 `main.tex`（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生中期报告为 `main_phd_annual_report.tex`）。
+2. 打开你需要的模板对应的 tex 文件 `main.tex`（开题报告为 `main.tex`，硕士生中期报告为 `main_master_mid_report.tex`，博士生年度进展报告为 `main_phd_annual_report.tex`）。
 3. 在左边栏中点击 TeX 图标，展开 `Build LaTeX project`，选择 `Recipe: latexmk (xelatex)` 进行编译。
 4. （可选）在 VSCode 设置中搜索 `latex-workshop.latex.recipe.default` 并将其改为 `lastUsed` 以便一直使用该选项编译。
+
+### 命令行用户
+
+在项目根目录中，根据需要编译对应的模板：
+
+```bash
+latexmk -xelatex main.tex
+latexmk -xelatex main_master_mid_report.tex
+latexmk -xelatex main_phd_annual_report.tex
+```
 
 ## 使用方法
 

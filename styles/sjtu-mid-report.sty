@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{styles/sjtu-mid-report}[2026/01/23 SJTU Mid-term Report Template]
+\ProvidesPackage{styles/sjtu-mid-report}[2026/08/24 SJTU Mid-term Report Template]
 
 % --- 宏包加载 ---
 \RequirePackage{geometry}
@@ -18,6 +18,7 @@
 \RequirePackage{array}
 \RequirePackage[style=gb7714-2015]{biblatex}
 \RequirePackage{etoolbox}
+\RequirePackage{expl3}
 \RequirePackage[hidelinks]{hyperref}
 
 % --- 页面设置（严格按照原模板）---
@@ -111,21 +112,60 @@
 \newcommand{\signaturetext}[1]{\renewcommand{\@signaturetext}{#1}}
 \newcommand{\signaturedate}[1]{\renewcommand{\@signaturedate}{#1}}
 
-% --- 课题来源变量 ---
-\newcommand{\@sourcensfc}{\myunchecked}
-\newcommand{\@sourcenssfc}{\myunchecked}
-\newcommand{\@sourcekeyproject}{\myunchecked}
-\newcommand{\@sourceothergov}{\myunchecked}
-\newcommand{\@sourceindustry}{\myunchecked}
-\newcommand{\@sourceselfproposed}{\myunchecked}
+% --- 课题来源设置 ---
+\ExplSyntaxOn
+\bool_new:N \g__sjtuforms_source_nsfc_bool
+\bool_new:N \g__sjtuforms_source_nssfc_bool
+\bool_new:N \g__sjtuforms_source_national_key_bool
+\bool_new:N \g__sjtuforms_source_other_government_bool
+\bool_new:N \g__sjtuforms_source_industry_bool
+\bool_new:N \g__sjtuforms_source_self_proposed_bool
 
-% 提供课题来源设置命令
-\newcommand{\sourcensfc}[1]{\renewcommand{\@sourcensfc}{#1}}
-\newcommand{\sourcenssfc}[1]{\renewcommand{\@sourcenssfc}{#1}}
-\newcommand{\sourcekeyproject}[1]{\renewcommand{\@sourcekeyproject}{#1}}
-\newcommand{\sourceothergov}[1]{\renewcommand{\@sourceothergov}{#1}}
-\newcommand{\sourceindustry}[1]{\renewcommand{\@sourceindustry}{#1}}
-\newcommand{\sourceselfproposed}[1]{\renewcommand{\@sourceselfproposed}{#1}}
+\keys_define:nn { sjtuforms / research-sources }
+  {
+    nsfc             .bool_gset:N = \g__sjtuforms_source_nsfc_bool,
+    nssfc            .bool_gset:N = \g__sjtuforms_source_nssfc_bool,
+    national-key     .bool_gset:N = \g__sjtuforms_source_national_key_bool,
+    other-government .bool_gset:N = \g__sjtuforms_source_other_government_bool,
+    industry         .bool_gset:N = \g__sjtuforms_source_industry_bool,
+    self-proposed    .bool_gset:N = \g__sjtuforms_source_self_proposed_bool,
+  }
+
+\cs_new_protected:Npn \__sjtuforms_research_sources_reset:
+  {
+    \bool_gset_false:N \g__sjtuforms_source_nsfc_bool
+    \bool_gset_false:N \g__sjtuforms_source_nssfc_bool
+    \bool_gset_false:N \g__sjtuforms_source_national_key_bool
+    \bool_gset_false:N \g__sjtuforms_source_other_government_bool
+    \bool_gset_false:N \g__sjtuforms_source_industry_bool
+    \bool_gset_false:N \g__sjtuforms_source_self_proposed_bool
+  }
+
+\cs_new_protected:Npn \__sjtuforms_research_sources_set:n #1
+  {
+    \__sjtuforms_research_sources_reset:
+    \keys_set:nn { sjtuforms / research-sources } {#1}
+  }
+
+\cs_new:Npn \__sjtuforms_research_source_mark:N #1
+  { \bool_if:NTF #1 { \mychecked } { \myunchecked } }
+
+\NewDocumentCommand \researchsources { m }
+  { \__sjtuforms_research_sources_set:n {#1} }
+
+\cs_new:Npn \@sourcensfc
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nsfc_bool }
+\cs_new:Npn \@sourcenssfc
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nssfc_bool }
+\cs_new:Npn \@sourcekeyproject
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_national_key_bool }
+\cs_new:Npn \@sourceothergov
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_other_government_bool }
+\cs_new:Npn \@sourceindustry
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_industry_bool }
+\cs_new:Npn \@sourceselfproposed
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_self_proposed_bool }
+\ExplSyntaxOff
 
 % --- 页眉页脚设置 ---
 \lhead{}

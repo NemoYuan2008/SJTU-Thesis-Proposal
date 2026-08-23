@@ -44,19 +44,20 @@
 %                   课题基本信息设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 论文题目: 如需手动换行，请使用 \newline
-% 课题来源: 使用 \mychecked 打勾，\myunchecked 画方框
+% 课题来源: 将对应选项设置为 true 即可勾选
 % 论文开题日期: 必填（不能留空）
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \proposedtitle{我的很长很长很长很长很长很长很长很长很长的\newline 很厉害的论文题目}
 
-% 设置课题来源（打勾的选项使用 \mychecked，未打勾的使用 \myunchecked）
-\sourcensfc{\mychecked}          % 国家自然科学基金课题
-\sourcenssfc{\myunchecked}       % 国家社会科学基金
-\sourcekeyproject{\mychecked}    % 国家重大科研专项
-\sourceothergov{\myunchecked}    % 其它纵向科研课题
-\sourceindustry{\myunchecked}    % 企业横向课题
-\sourceselfproposed{\myunchecked}% 自拟课题
+\researchsources{
+  nsfc             = true,  % 国家自然科学基金课题
+  nssfc            = false, % 国家社会科学基金
+  national-key     = true,  % 国家重大科研专项
+  other-government = false, % 其它纵向科研课题
+  industry         = false, % 企业横向课题
+  self-proposed    = false, % 自拟课题
+}
 
 % 论文开题日期（必填）
 \proposaldate{20YY-MM-DD}

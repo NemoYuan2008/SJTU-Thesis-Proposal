@@ -51,21 +51,22 @@
 %                   课题基本信息设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 论文题目: 如果与封面题目不同，可在此设置，否则留空
-% 课题来源: 使用 \mychecked 打勾，\myunchecked 画方框
-% 如选择"其它"，请使用 \sourceothername{} 填写名称
+% 课题来源: 将对应选项设置为 true 即可勾选
+% 如选择"其它"，请将 other 设置为 true 并填写 other-name
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \proposedtitle{}  % 留空则使用封面题目
 
-% 设置课题来源（打勾的选项使用 \mychecked，未打勾的使用 \myunchecked）
-\sourcensfc{\mychecked}          % 国家自然科学基金课题
-\sourcenssfc{\myunchecked}       % 国家社会科学基金
-\sourcekeyproject{\mychecked}    % 国家重大科研专项
-\sourceothergov{\myunchecked}    % 其它纵向科研课题
-\sourceindustry{\myunchecked}    % 企业横向课题
-\sourceselfproposed{\myunchecked}% 自拟课题
-\sourceother{\myunchecked}       % 其它
-\sourceothername{在此处填写内容}  % 如选择"其它"，请填写名称
+\researchsources{
+  nsfc             = true,  % 国家自然科学基金课题
+  nssfc            = false, % 国家社会科学基金
+  national-key     = true,  % 国家重大科研专项
+  other-government = false, % 其它纵向科研课题
+  industry         = false, % 企业横向课题
+  self-proposed    = false, % 自拟课题
+  other            = false, % 其它
+  other-name       = {},    % “其它”的具体名称
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                      文件末尾签名设置

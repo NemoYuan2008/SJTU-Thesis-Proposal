@@ -152,7 +152,7 @@
         \centering
         \renewcommand{\arraystretch}{1.7}
         \zihao{-4}
-        \begin{tabular}{>{\bfseries\kaishu\linespread{1}\selectfont}m{4cm}>{\fangsong}m{9.3cm}}
+        \begin{tabular}{>{\bfseries\kaishu\linespread{1}\selectfont}m{3.63cm}>{\fangsong}m{8.13cm}}
             {\zihao{4}学号}~~Student ID
                 & \@studentid\\\cline{2-2}
             {\zihao{4}姓名}~~Name
@@ -178,7 +178,14 @@
 % --- 生成填报说明页 ---
 \newcommand{\makeinstruction}{
     \pagestyle{fancy}
-    \newgeometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm}
+    \newgeometry{
+        left=2.8cm,
+        right=2.8cm,
+        top=2.5cm,
+        bottom=2.5cm,
+        footskip=16.5pt,
+        layoutvoffset=10.25pt
+    }
     \chead{\zihao{-5}上海交通大学硕士论文中期检查报告~~Mid-term Examination for SJTU Master Student}
     \cfoot{\zihao{-5}\bfseries 1 / 1}
     \fancyfootoffset{0pt}
@@ -227,16 +234,23 @@
 
 % --- 生成课题基本信息表 ---
 \newcommand{\makeprojectinfo}{
-    \restoregeometry
+    \newgeometry{
+        left=2cm,
+        right=2cm,
+        top=2.5cm,
+        bottom=2.1cm,
+        footskip=19.3pt,
+        layoutvoffset=10.25pt
+    }
     \setcounter{page}{1}
     \cfoot{\zihao{-5}\bfseries\thepage\ / \pageref*{LastPage}}
     \fancyfootoffset{0pt}
 
     \begin{center}
-        \vspace*{-1.3cm}
+        \vspace*{-1.44cm}
         \fangsong\bfseries\zihao{4}
         中期检查报告 Mid-term Examination Report
-        \vspace{-12pt}
+        \vspace{-15.95pt}
     \end{center}
 
     \begin{table}[h]

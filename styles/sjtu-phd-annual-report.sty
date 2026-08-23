@@ -178,7 +178,13 @@
 % --- 生成填报说明页 ---
 \newcommand{\makeinstruction}{
     \pagestyle{fancy}
-    \newgeometry{left=2.8cm,right=2.8cm,top=2.5cm,bottom=2.5cm}
+    \newgeometry{
+        left=2.8cm,
+        right=2.8cm,
+        top=2.5cm,
+        bottom=2.5cm,
+        layoutvoffset=10.25pt
+    }
     \chead{\zihao{-5}上海交通大学博士生年度进展报告~~Annual Progress Review for SJTU Doctoral Student}
     \cfoot{}
     \fancyfootoffset{0pt}
@@ -228,16 +234,23 @@
 
 % --- 生成课题基本信息表 ---
 \newcommand{\makeprojectinfo}{
-    \restoregeometry
+    \newgeometry{
+        left=1.27cm,
+        right=1.27cm,
+        top=2.5cm,
+        bottom=2.1cm,
+        footskip=19.3pt,
+        layoutvoffset=10.25pt
+    }
     \setcounter{page}{1}
     \cfoot{\zihao{-5}\bfseries\thepage\ / \pageref*{LastPage}}
     \fancyfootoffset{0pt}
 
     \begin{center}
-        \vspace*{-1.3cm}
+        \vspace*{-1.34cm}
         \fangsong\bfseries\zihao{4}
         博士生年度进展报告 Annual Progress Report
-        \vspace{-12pt}
+        \vspace{-19.3pt}
     \end{center}
 
     \begin{table}[h]
@@ -250,13 +263,14 @@
             \@proposedtitle\\
             \hline
             研究课题来源\newline Source of Research\newline Project &
-            请在合适选项前画 \checkmark~~Please select proper options by ``\checkmark''.\newline
-            \@sourcensfc\ 国家自然科学基金课题 NSFC Research Grants\newline
-            \@sourcenssfc\ 国家社会科学基金 National Social Science Fund of China\newline
-            \@sourcekeyproject\ 国家重大科研专项 National Key Research Projects\newline
-            \@sourceothergov\ 其它纵向科研课题 Other Governmental Research Grants\newline
-            \@sourceindustry\ 企业横向课题 R\&D Projects from Industry\newline
-            \@sourceselfproposed\ 自拟课题 Self-proposed Project
+            {\setlength{\baselineskip}{31.2pt}
+            请在合适选项前画 \checkmark~~Please select proper options by ``\checkmark''.\par
+            \@sourcensfc\ 国家自然科学基金课题 NSFC Research Grants\par
+            \@sourcenssfc\ 国家社会科学基金 National Social Science Fund of China\par
+            \@sourcekeyproject\ 国家重大科研专项 National Key Research Projects\par
+            \@sourceothergov\ 其它纵向科研课题 Other Governmental Research Grants\par
+            \@sourceindustry\ 企业横向课题 R\&D Projects from Industry\par
+            \@sourceselfproposed\ 自拟课题 Self-proposed Project\rule[-14pt]{0pt}{14pt}\par}
             \\\hline
             论文开题日期\newline Dissertation\newline Proposal Date&
             \@proposaldate\\\hline

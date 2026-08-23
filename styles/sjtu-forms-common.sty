@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SJTU Report Template Shared Core
+% 上海交通大学研究生报告模板公共核心
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/sjtu-forms-common}[2026/08/24 SJTU Forms Common Core]
+
+\RequirePackage{amssymb}
+\RequirePackage{expl3}
+
+\ExplSyntaxOn
+
+% --- 课题来源状态 ---
+\bool_new:N \g__sjtuforms_source_nsfc_bool
+\bool_new:N \g__sjtuforms_source_nssfc_bool
+\bool_new:N \g__sjtuforms_source_national_key_bool
+\bool_new:N \g__sjtuforms_source_other_government_bool
+\bool_new:N \g__sjtuforms_source_industry_bool
+\bool_new:N \g__sjtuforms_source_self_proposed_bool
+\bool_new:N \g__sjtuforms_source_other_bool
+\bool_new:N \g__sjtuforms_source_other_enabled_bool
+\tl_new:N \g__sjtuforms_source_other_name_tl
+
+\keys_define:nn { sjtuforms / research-sources }
+  {
+    nsfc             .bool_gset:N = \g__sjtuforms_source_nsfc_bool,
+    nssfc            .bool_gset:N = \g__sjtuforms_source_nssfc_bool,
+    national-key     .bool_gset:N = \g__sjtuforms_source_national_key_bool,
+    other-government .bool_gset:N = \g__sjtuforms_source_other_government_bool,
+    industry         .bool_gset:N = \g__sjtuforms_source_industry_bool,
+    self-proposed    .bool_gset:N = \g__sjtuforms_source_self_proposed_bool,
+  }
+
+\msg_new:nnn { sjtuforms } { empty-other-name }
+  { 课题来源设置中~other=true，但~other-name~为空。 }
+
+\cs_new_protected:Npn \__sjtuforms_research_sources_reset:
+  {
+    \bool_gset_false:N \g__sjtuforms_source_nsfc_bool
+    \bool_gset_false:N \g__sjtuforms_source_nssfc_bool
+    \bool_gset_false:N \g__sjtuforms_source_national_key_bool
+    \bool_gset_false:N \g__sjtuforms_source_other_government_bool
+    \bool_gset_false:N \g__sjtuforms_source_industry_bool
+    \bool_gset_false:N \g__sjtuforms_source_self_proposed_bool
+    \bool_gset_false:N \g__sjtuforms_source_other_bool
+    \tl_gclear:N \g__sjtuforms_source_other_name_tl
+  }
+
+\cs_new_protected:Npn \__sjtuforms_research_sources_set:n #1
+  {
+    \__sjtuforms_research_sources_reset:
+    \keys_set:nn { sjtuforms / research-sources } {#1}
+    \bool_if:NT \g__sjtuforms_source_other_enabled_bool
+      {
+        \bool_if:NTF \g__sjtuforms_source_other_bool
+          {
+            \tl_if_blank:VT \g__sjtuforms_source_other_name_tl
+              { \msg_warning:nn { sjtuforms } { empty-other-name } }
+          }
+          { \tl_gclear:N \g__sjtuforms_source_other_name_tl }
+      }
+  }
+
+% 开题报告额外启用“其它”及其名称；其它报告不注册这两个键。
+\cs_new_protected:Npn \sjtuforms_research_sources_enable_other:
+  {
+    \bool_if:NF \g__sjtuforms_source_other_enabled_bool
+      {
+        \bool_gset_true:N \g__sjtuforms_source_other_enabled_bool
+        \keys_define:nn { sjtuforms / research-sources }
+          {
+            other      .bool_gset:N = \g__sjtuforms_source_other_bool,
+            other-name .tl_gset:N   = \g__sjtuforms_source_other_name_tl,
+          }
+      }
+  }
+
+\cs_new:Npn \__sjtuforms_research_source_checked:
+  { \checkmark }
+\cs_new:Npn \__sjtuforms_research_source_unchecked:
+  { $\square$\kern.65pt }
+\cs_new:Npn \__sjtuforms_research_source_mark:N #1
+  {
+    \bool_if:NTF #1
+      { \__sjtuforms_research_source_checked: }
+      { \__sjtuforms_research_source_unchecked: }
+  }
+
+\NewDocumentCommand \researchsources { m }
+  { \__sjtuforms_research_sources_set:n {#1} }
+
+% 供各报告样式的排版层读取；这些命令不是用户接口。
+\cs_new:Npn \sjtuforms@source@nsfc
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nsfc_bool }
+\cs_new:Npn \sjtuforms@source@nssfc
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nssfc_bool }
+\cs_new:Npn \sjtuforms@source@nationalkey
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_national_key_bool }
+\cs_new:Npn \sjtuforms@source@othergovernment
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_other_government_bool }
+\cs_new:Npn \sjtuforms@source@industry
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_industry_bool }
+\cs_new:Npn \sjtuforms@source@selfproposed
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_self_proposed_bool }
+\cs_new:Npn \sjtuforms@source@other
+  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_other_bool }
+\cs_new:Npn \sjtuforms@source@other@name
+  { \tl_use:N \g__sjtuforms_source_other_name_tl }
+
+\ExplSyntaxOff
+
+\endinput

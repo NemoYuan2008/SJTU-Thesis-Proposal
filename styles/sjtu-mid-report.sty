@@ -18,7 +18,7 @@
 \RequirePackage{array}
 \RequirePackage[style=gb7714-2015]{biblatex}
 \RequirePackage{etoolbox}
-\RequirePackage{expl3}
+\RequirePackage{styles/sjtu-forms-common}
 \RequirePackage[hidelinks]{hyperref}
 
 % --- 页面设置（严格按照原模板）---
@@ -37,11 +37,6 @@
     ItalicFont     = *-italic,
     BoldItalicFont = *-bolditalic,
 ]
-
-% --- 自定义命令 ---
-% 定义"研究课题来源"表格里用到的勾和框
-\newcommand*{\myunchecked}{$\square$\kern.65pt}  % 未打勾的方框
-\newcommand*{\mychecked}{\checkmark}              % 打勾
 
 % 重定义日期格式为 YYYY-MM-DD
 \renewcommand{\today}{\the\year-\ifnum\month<10 0\fi\the\month-\ifnum\day<10 0\fi\the\day}
@@ -111,61 +106,6 @@
 \newcommand{\signatureimage}[1]{\renewcommand{\@signatureimage}{#1}}
 \newcommand{\signaturetext}[1]{\renewcommand{\@signaturetext}{#1}}
 \newcommand{\signaturedate}[1]{\renewcommand{\@signaturedate}{#1}}
-
-% --- 课题来源设置 ---
-\ExplSyntaxOn
-\bool_new:N \g__sjtuforms_source_nsfc_bool
-\bool_new:N \g__sjtuforms_source_nssfc_bool
-\bool_new:N \g__sjtuforms_source_national_key_bool
-\bool_new:N \g__sjtuforms_source_other_government_bool
-\bool_new:N \g__sjtuforms_source_industry_bool
-\bool_new:N \g__sjtuforms_source_self_proposed_bool
-
-\keys_define:nn { sjtuforms / research-sources }
-  {
-    nsfc             .bool_gset:N = \g__sjtuforms_source_nsfc_bool,
-    nssfc            .bool_gset:N = \g__sjtuforms_source_nssfc_bool,
-    national-key     .bool_gset:N = \g__sjtuforms_source_national_key_bool,
-    other-government .bool_gset:N = \g__sjtuforms_source_other_government_bool,
-    industry         .bool_gset:N = \g__sjtuforms_source_industry_bool,
-    self-proposed    .bool_gset:N = \g__sjtuforms_source_self_proposed_bool,
-  }
-
-\cs_new_protected:Npn \__sjtuforms_research_sources_reset:
-  {
-    \bool_gset_false:N \g__sjtuforms_source_nsfc_bool
-    \bool_gset_false:N \g__sjtuforms_source_nssfc_bool
-    \bool_gset_false:N \g__sjtuforms_source_national_key_bool
-    \bool_gset_false:N \g__sjtuforms_source_other_government_bool
-    \bool_gset_false:N \g__sjtuforms_source_industry_bool
-    \bool_gset_false:N \g__sjtuforms_source_self_proposed_bool
-  }
-
-\cs_new_protected:Npn \__sjtuforms_research_sources_set:n #1
-  {
-    \__sjtuforms_research_sources_reset:
-    \keys_set:nn { sjtuforms / research-sources } {#1}
-  }
-
-\cs_new:Npn \__sjtuforms_research_source_mark:N #1
-  { \bool_if:NTF #1 { \mychecked } { \myunchecked } }
-
-\NewDocumentCommand \researchsources { m }
-  { \__sjtuforms_research_sources_set:n {#1} }
-
-\cs_new:Npn \@sourcensfc
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nsfc_bool }
-\cs_new:Npn \@sourcenssfc
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_nssfc_bool }
-\cs_new:Npn \@sourcekeyproject
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_national_key_bool }
-\cs_new:Npn \@sourceothergov
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_other_government_bool }
-\cs_new:Npn \@sourceindustry
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_industry_bool }
-\cs_new:Npn \@sourceselfproposed
-  { \__sjtuforms_research_source_mark:N \g__sjtuforms_source_self_proposed_bool }
-\ExplSyntaxOff
 
 % --- 页眉页脚设置 ---
 \lhead{}
@@ -307,12 +247,12 @@
             \hline
             研究课题来源\newline Source of Research\newline Project &
             请在合适选项前画 \checkmark~~Please select proper options by ``\checkmark''.\newline
-            \@sourcensfc\ 国家自然科学基金课题 NSFC Research Grants\newline
-            \@sourcenssfc\ 国家社会科学基金 National Social Science Fund of China\newline
-            \@sourcekeyproject\ 国家重大科研专项 National Key Research Projects\newline
-            \@sourceothergov\ 其它纵向科研课题 Other Governmental Research Grants\newline
-            \@sourceindustry\ 企业横向课题 R\&D Projects from Industry\newline
-            \@sourceselfproposed\ 自拟课题 Self-proposed Project
+            \sjtuforms@source@nsfc\ 国家自然科学基金课题 NSFC Research Grants\newline
+            \sjtuforms@source@nssfc\ 国家社会科学基金 National Social Science Fund of China\newline
+            \sjtuforms@source@nationalkey\ 国家重大科研专项 National Key Research Projects\newline
+            \sjtuforms@source@othergovernment\ 其它纵向科研课题 Other Governmental Research Grants\newline
+            \sjtuforms@source@industry\ 企业横向课题 R\&D Projects from Industry\newline
+            \sjtuforms@source@selfproposed\ 自拟课题 Self-proposed Project
             \\\hline
             论文开题日期\newline Thesis Proposal Date&
             \@proposaldate\\\hline

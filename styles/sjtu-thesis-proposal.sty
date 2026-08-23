@@ -116,6 +116,9 @@
 
 % --- 生成封面页 ---
 \newcommand{\makecover}{
+    % 前置页采用罗马数字编号但不显示页码，以避免与正文页码的 PDF 锚点重复
+    % 避免出现 Object @page.1 already defined 的警告
+    \pagenumbering{roman}
     \pagestyle{empty}
 
     \begin{figure}[h]
@@ -252,8 +255,8 @@
 
 % --- 生成课题基本信息表 ---
 \newcommand{\makeprojectinfo}{
+    \pagenumbering{arabic}
     \pagestyle{plain}
-    \setcounter{page}{1}
 
     \begin{table}[h]
         \centering

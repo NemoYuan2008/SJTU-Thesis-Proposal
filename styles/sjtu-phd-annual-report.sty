@@ -133,6 +133,9 @@
 
 % --- 生成封面页 ---
 \newcommand{\makecover}{
+    % 前置页采用罗马数字编号但不显示页码，以避免与正文页码的 PDF 锚点重复
+    % 避免出现 Object @page.1 already defined 的警告
+    \pagenumbering{roman}
     \pagestyle{empty}
 
     \begin{figure}[h]
@@ -242,7 +245,7 @@
         footskip=19.3pt,
         layoutvoffset=10.25pt
     }
-    \setcounter{page}{1}
+    \pagenumbering{arabic}
     \cfoot{\zihao{-5}\bfseries\thepage\ / \pageref*{LastPage}}
     \fancyfootoffset{0pt}
 

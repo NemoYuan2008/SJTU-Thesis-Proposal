@@ -1,15 +1,57 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SJTU Report Template Shared Core
+% SJTU Forms Common Core
 % 上海交通大学研究生报告模板公共核心
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{styles/sjtu-forms-common}[2026/08/24 SJTU Forms Common Core]
 
-\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
 \RequirePackage{expl3}
 
 \ExplSyntaxOn
+
+% --- 通用字段存储 ---
+\prop_new:N \g__sjtuforms_fields_prop
+\tl_new:N \l__sjtuforms_field_value_tl
+
+\clist_map_inline:nn
+  {
+    student-id,
+    name,
+    degree-program,
+    supervisor,
+    school,
+    major,
+    date,
+    proposed-title,
+    signature-image,
+    signature-text,
+    signature-date,
+    study-mode,
+    thesis-title,
+    venue,
+    proposal-date,
+    enrollment
+  }
+  { \prop_gput:Nnn \g__sjtuforms_fields_prop {#1} { } }
+
+\cs_new_protected:Npn \__sjtuforms_field_set:nn #1#2
+  { \prop_gput:Nnn \g__sjtuforms_fields_prop {#1} {#2} }
+
+\cs_new:Npn \__sjtuforms_field_use:n #1
+  { \prop_item:Nn \g__sjtuforms_fields_prop {#1} }
+
+% 供各报告样式的排版层读取；这些命令不是用户接口。
+\cs_new:Npn \sjtuforms@field #1
+  { \__sjtuforms_field_use:n {#1} }
+
+\cs_new_protected:Npn \sjtuforms@field@ifblank #1#2#3
+  {
+    \prop_get:NnN \g__sjtuforms_fields_prop {#1}
+      \l__sjtuforms_field_value_tl
+    \tl_if_blank:VTF \l__sjtuforms_field_value_tl {#2} {#3}
+  }
 
 % --- 课题来源状态 ---
 \bool_new:N \g__sjtuforms_source_nsfc_bool
@@ -76,6 +118,74 @@
       }
   }
 
+% --- 统一设置接口 ---
+\keys_define:nn { sjtuforms / setup }
+  {
+    student-id
+      .code:n = \__sjtuforms_field_set:nn { student-id } {#1},
+    name
+      .code:n = \__sjtuforms_field_set:nn { name } {#1},
+    degree-program
+      .code:n = \__sjtuforms_field_set:nn { degree-program } {#1},
+    supervisor
+      .code:n = \__sjtuforms_field_set:nn { supervisor } {#1},
+    school
+      .code:n = \__sjtuforms_field_set:nn { school } {#1},
+    major
+      .code:n = \__sjtuforms_field_set:nn { major } {#1},
+    date
+      .code:n = \__sjtuforms_field_set:nn { date } {#1},
+    proposed-title
+      .code:n = \__sjtuforms_field_set:nn { proposed-title } {#1},
+    signature-image
+      .code:n = \__sjtuforms_field_set:nn { signature-image } {#1},
+    signature-text
+      .code:n = \__sjtuforms_field_set:nn { signature-text } {#1},
+    signature-date
+      .code:n = \__sjtuforms_field_set:nn { signature-date } {#1},
+    research-sources
+      .code:n = \__sjtuforms_research_sources_set:n {#1},
+  }
+
+\cs_new_protected:Npn \sjtuforms_setup_enable_proposal:
+  {
+    \keys_define:nn { sjtuforms / setup }
+      {
+        study-mode
+          .code:n = \__sjtuforms_field_set:nn { study-mode } {##1},
+        thesis-title
+          .code:n = \__sjtuforms_field_set:nn { thesis-title } {##1},
+        venue
+          .code:n = \__sjtuforms_field_set:nn { venue } {##1},
+      }
+    \sjtuforms_research_sources_enable_other:
+  }
+
+\cs_new_protected:Npn \sjtuforms_setup_enable_mid_report:
+  {
+    \keys_define:nn { sjtuforms / setup }
+      {
+        study-mode
+          .code:n = \__sjtuforms_field_set:nn { study-mode } {##1},
+        proposal-date
+          .code:n = \__sjtuforms_field_set:nn { proposal-date } {##1},
+      }
+  }
+
+\cs_new_protected:Npn \sjtuforms_setup_enable_phd_annual_report:
+  {
+    \keys_define:nn { sjtuforms / setup }
+      {
+        proposal-date
+          .code:n = \__sjtuforms_field_set:nn { proposal-date } {##1},
+        enrollment
+          .code:n = \__sjtuforms_field_set:nn { enrollment } {##1},
+      }
+  }
+
+\NewDocumentCommand \sjtuformsetup { m }
+  { \keys_set:nn { sjtuforms / setup } {#1} }
+
 \cs_new:Npn \__sjtuforms_research_source_checked:
   { \checkmark }
 \cs_new:Npn \__sjtuforms_research_source_unchecked:
@@ -86,9 +196,6 @@
       { \__sjtuforms_research_source_checked: }
       { \__sjtuforms_research_source_unchecked: }
   }
-
-\NewDocumentCommand \researchsources { m }
-  { \__sjtuforms_research_sources_set:n {#1} }
 
 % 供各报告样式的排版层读取；这些命令不是用户接口。
 \cs_new:Npn \sjtuforms@source@nsfc

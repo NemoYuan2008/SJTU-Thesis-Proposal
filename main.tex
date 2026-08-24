@@ -5,95 +5,85 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
-
-% 加载模板样式文件
 \usepackage{styles/sjtu-thesis-proposal}
+
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
 
 % 加载参考文献
 \addbibresource{ref.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      填写封面信息
+%                        信息设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% 1. 学生类别 Degree Program (请填写以下四个中的一个):
+% 1. 学生类别 Degree Program（请填写以下四个中的一个）:
 %      学术型博士生 Academic Doctoral Student
 %      专业型博士生 Professional Doctoral Student
 %      学术型硕士生 Academic Master Student
 %      专业型硕士生 Professional Master Student
 %
-% 2. 学习形式 Study Mode (请填写以下三个中的一个):
+% 2. 学习形式 Study Mode（请填写以下三个中的一个）:
 %      全日制 Full-time
 %      非全日制 Part-time
 %      同等学力学生
 %
-% 3. 论文题目: 如需手动换行，请使用 \newline
+% 3. 论文题目 thesis-title:
+%      较长题目会根据表格列宽自动换行，
+%      但如果需要手动换行，可以使用 \newline 命令。
 %
-% 4. 开题日期:
-%      留空时自动填充当前日期（格式 2026-01-23）
-%      \proposaldate{}      % 自动填充今天
-%      \proposaldate{2026-01-23}  % 指定日期
+% 4. 开题日期 date:
+%      date = {},            % 留空时自动填充当前日期
+%      date = 2026-01-23,    % 指定日期
 %
+% 5. 论文题目 proposed-title:
+%      此为报告第 3 页表格中的论文题目，
+%      留空时默认使用封面页的 thesis-title。
+%
+% 6. 课题来源 research-sources:
+%      此为报告第 3 页表格中的课题来源，
+%      将对应选项设置为 true 即可勾选。
+%      如选择“其它”，请将 other 设置为 true 并填写 other-name。
+%
+% 7. 文件末尾签名:
+%      签名按以下顺序检查：
+%      1) signature-image 非空时，显示指定的签名图片；
+%      2) 没有图片但 signature-text 非空时，显示签名文字；
+%      3) 两者都留空时，显示横线供手写签名。
+%      signature-date = {},          % 自动显示当前日期
+%      signature-date = 2026-01-23,  % 指定签名日期
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\studentid{012345678912}
-\name{我的名字}
-\degreeprogram{学术型博士生 Academic Doctoral Student}
-\studymode{全日制 Full-time}
-\supervisor{我的导师}
-\thesistitle{我的很长很长很长很长很长很长很长很长很长的\newline 很厉害的论文题目}
-\school{我的学院}
-\major{我的专业}
-\proposaldate{}
-\venue{会议室}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                   课题基本信息设置
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 论文题目: 如果与封面题目不同，可在此设置，否则留空
-% 课题来源: 将对应选项设置为 true 即可勾选
-% 如选择"其它"，请将 other 设置为 true 并填写 other-name
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\proposedtitle{}  % 留空则使用封面题目
-
-\researchsources{
-  nsfc             = true,  % 国家自然科学基金课题
-  nssfc            = false, % 国家社会科学基金
-  national-key     = true,  % 国家重大科研专项
-  other-government = false, % 其它纵向科研课题
-  industry         = false, % 企业横向课题
-  self-proposed    = false, % 自拟课题
-  other            = false, % 其它
-  other-name       = {},    % “其它”的具体名称
+\sjtuformsetup{
+  % 以下为封面页信息
+  student-id     = 012345678912,
+  name           = 我的姓名,
+  degree-program = 学术型博士生 Academic Doctoral Student,
+  study-mode     = 全日制 Full-time,
+  supervisor     = 我的导师,
+  thesis-title   = {我的很长很长很长很长很长很长很长很长很长的很厉害的论文题目},
+  school         = 我的学院,
+  major          = 我的专业,
+  date           = {},
+  venue          = 会议室,
+  % 以下为第 3 页表格信息
+  proposed-title = {},
+  research-sources = {
+    nsfc             = true,  % 国家自然科学基金课题
+    nssfc            = false, % 国家社会科学基金
+    national-key     = true,  % 国家重大科研专项
+    other-government = false, % 其它纵向科研课题
+    industry         = false, % 企业横向课题
+    self-proposed    = false, % 自拟课题
+    other            = false, % 其它
+    other-name       = {},    % “其它”的具体名称
+  },
+  % 以下为文件末尾签名栏信息
+  signature-image = figures/your_signature.png,
+  signature-text  = 我的姓名,
+  signature-date  = {},
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      文件末尾签名设置
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 签名优先级（按顺序检查）：
-%   1. 如果设置了签名图片，则显示图片
-%      \signatureimage{figures/your_signature.png}
-%
-%   2. 如果没有图片但设置了签名文字，则显示文字
-%      \signaturetext{我的名字}
-%
-%   3. 如果都没有，则显示横线供手写
-%      \signatureimage{}
-%      \signaturetext{}
-%
-% 日期设置：
-%   - 留空时自动显示当前日期 \today
-%   - \signaturedate{}  或 \signaturedate{2026-01-23}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\signatureimage{figures/your_signature.png}  % 签名图片路径
-\signaturetext{我的名字}                      % 签名文字（如果没有图片则显示这个）
-\signaturedate{}                              % 留空则显示今天，或填写具体日期如 2026-01-23
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                    文档主体开始
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -115,14 +105,14 @@
 
 \vspace{-\parskip}
 \section{请综述课题国内外研究进展、现状、挑战与意义，可分节描述。
-    博士生不少于 10,000 汉字，硕士生不少于 5,000 汉字。
-    请在文中标注参考文献。
-    Please review the frontier, current status,
-    challenges and significance of the research topic.
-    The citations should be marked in the context
-    and listed in order at the end of this section.
-    No less than 8,000 words for doctoral students
-    and 4,000 words for master students if written in English.}
+  博士生不少于 10,000 汉字，硕士生不少于 5,000 汉字。
+  请在文中标注参考文献。
+  Please review the frontier, current status,
+  challenges and significance of the research topic.
+  The citations should be marked in the context
+  and listed in order at the end of this section.
+  No less than 8,000 words for doctoral students
+  and 4,000 words for master students if written in English.}
 
 
 制作开题报告和中期报告 \LaTeX{} 模板的初衷是为了大家能
@@ -154,24 +144,24 @@
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表部分 %%%%%%%%%%%%%%%%%%%%%
 \vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
-    \linespread{1.25}\selectfont    % 参考文献行距小一点
-    参考文献 References:\par
-    \vspace{-1em}
-    \printbibliography[heading=none]
+  \linespread{1.25}\selectfont    % 参考文献行距小一点
+  参考文献 References:\par
+  \vspace{-1em}
+  \printbibliography[heading=none]
 }
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表结束 %%%%%%%%%%%%%%%%%%%%%
 
 
 \section{课题研究目标、主要研究内容和拟解决的关键问题。
-    Research objectives, main contents and key issues to be solved.}
+  Research objectives, main contents and key issues to be solved.}
 
 我的课题研究目标非常明确，主要研究内容非常的主要，拟解决的关键问题非常关键。
 
 
 
 \section{拟采取的研究方法、研究方案及其可行性分析。
-    Research methods and research scheme to be adopted
-    and feasibility analysis.}
+  Research methods and research scheme to be adopted
+  and feasibility analysis.}
 
 我要采取特别厉害的研究方法、特别新颖的研究方案。这些方法和方案都非常的可行。
 
@@ -191,17 +181,14 @@
 
 
 \section{与本课题有关的工作积累、已有的研究工作成绩。
-    Prior experience and accomplished achievements
-    related to the proposed topic.}
+  Prior experience and accomplished achievements
+  related to the proposed topic.}
 
 
 目前已经积累了很多很多工作了，也取得了非常非常好的工作成绩。
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                    生成签字栏
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% 生成签字栏
 \makesignature
 
 \end{document}

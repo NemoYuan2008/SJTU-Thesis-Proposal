@@ -5,89 +5,79 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,zihao=-4,AutoFakeBold]{ctexart}
-
-% 加载模板样式文件
 \usepackage{styles/sjtu-mid-report}
+
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
 
 % 加载参考文献
 \addbibresource{ref.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      填写封面信息
+%                        信息设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% 1. 学生类别 Degree Program (请填写以下两个中的一个):
+% 1. 学生类别 Degree Program（请填写以下两个中的一个）:
 %      学术型硕士生 Academic Master
 %      专业型硕士生 Professional Master
 %
-% 2. 学习形式 Study Mode (请填写以下两个中的一个):
+% 2. 学习形式 Study Mode（请填写以下两个中的一个）:
 %      全日制 Full-time
 %      非全日制 Part-time
 %
-% 3. 考核日期:
-%      留空时自动填充当前日期（格式 2026-01-23）
-%      \examdate{}      % 自动填充今天
-%      \examdate{2026-01-23}  % 指定日期
+% 3. 中期考核日期 date:
+%      date = {},            % 留空时自动填充当前日期
+%      date = 2026-01-23,    % 指定日期
 %
+% 4. 论文题目 proposed-title:
+%      此为报告第 3 页表格中的论文题目。
+%      较长题目会根据表格列宽自动换行，
+%      但如果需要手动换行，可以使用 \newline 命令。
+%
+% 5. 课题来源 research-sources:
+%      此为报告第 3 页表格中的课题来源，
+%      将对应选项设置为 true 即可勾选。
+%
+% 6. 论文开题日期 proposal-date:
+%      此为报告第 3 页表格中的论文开题日期，
+%      必须填写，不会自动使用当前日期。
+%
+% 7. 文件末尾签名:
+%      签名按以下顺序检查：
+%      1) signature-image 非空时，显示指定的签名图片；
+%      2) 没有图片但 signature-text 非空时，显示签名文字；
+%      3) 两者都留空时，显示横线供手写签名。
+%      signature-date = {},          % 自动显示当前日期
+%      signature-date = 2026-01-23,  % 指定签名日期
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\studentid{123456789012}
-\name{我的名字}
-\degreeprogram{专业型硕士生 Professional Master}
-\studymode{全日制 Full-time}
-\supervisor{我的导师}
-\major{我的专业}
-\school{我的学院}
-\examdate{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                   课题基本信息设置
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 论文题目: 如需手动换行，请使用 \newline
-% 课题来源: 将对应选项设置为 true 即可勾选
-% 论文开题日期: 必填（不能留空）
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\proposedtitle{我的很长很长很长很长很长很长很长很长很长的\newline 很厉害的论文题目}
-
-\researchsources{
-  nsfc             = true,  % 国家自然科学基金课题
-  nssfc            = false, % 国家社会科学基金
-  national-key     = true,  % 国家重大科研专项
-  other-government = false, % 其它纵向科研课题
-  industry         = false, % 企业横向课题
-  self-proposed    = false, % 自拟课题
+\sjtuformsetup{
+  % 以下为封面页信息
+  student-id     = 123456789012,
+  name           = 我的姓名,
+  degree-program = 专业型硕士生 Professional Master,
+  study-mode     = 全日制 Full-time,
+  supervisor     = 我的导师,
+  major          = 我的专业,
+  school         = 我的学院,
+  date           = {},
+  % 以下为第 3 页表格信息
+  proposed-title = {我的很长很长很长很长很长很长很长很长很长的很厉害的论文题目},
+  research-sources = {
+    nsfc             = true,  % 国家自然科学基金课题
+    nssfc            = false, % 国家社会科学基金
+    national-key     = true,  % 国家重大科研专项
+    other-government = false, % 其它纵向科研课题
+    industry         = false, % 企业横向课题
+    self-proposed    = false, % 自拟课题
+  },
+  proposal-date   = 20YY-MM-DD,
+  % 以下为文件末尾签名栏信息
+  signature-image = figures/your_signature.png,
+  signature-text  = 我的姓名,
+  signature-date  = {},
 }
 
-% 论文开题日期（必填）
-\proposaldate{20YY-MM-DD}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      文件末尾签名设置
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 签名优先级（按顺序检查）：
-%   1. 如果设置了签名图片，则显示图片
-%      \signatureimage{figures/your_signature.png}
-%
-%   2. 如果没有图片但设置了签名文字，则显示文字
-%      \signaturetext{我的名字}
-%
-%   3. 如果都没有，则显示横线供手写
-%      \signatureimage{}
-%      \signaturetext{}
-%
-% 日期设置：
-%   - 留空时自动显示当前日期 (格式 2026-01-23)
-%   - \signaturedate{}  或 \signaturedate{2026-01-23}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\signatureimage{figures/your_signature.png}  % 签名图片路径
-\signaturetext{我的名字}                      % 签名文字（如果没有图片则显示这个）
-\signaturedate{}                              % 留空则显示今天，或填写具体日期如 2026-01-23
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                    文档主体开始
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -140,9 +130,9 @@
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表部分 %%%%%%%%%%%%%%%%%%%%%
 \vspace{2\baselineskip}% 让参考文献列表与正文有 2 行的间距
 {%
-    \linespread{1.25}\selectfont    % 参考文献行距小一点
-    参考文献 References:
-    \printbibliography[heading=none]
+  \linespread{1.25}\selectfont    % 参考文献行距小一点
+  参考文献 References:
+  \printbibliography[heading=none]
 }
 %%%%%%%%%%%%%%%%%%%%% 参考文献列表结束 %%%%%%%%%%%%%%%%%%%%%
 
@@ -150,15 +140,12 @@
 \section{成果清单 List of Achievements。\mdseries 请列出开题报告以来或上次年度进展报告以来新发表的学术论文、授权专利、国际会议论文、专著等成果清单。作者、标题、杂志、卷、期、页码等信息请填写完整。Please provide a list of academic publications (papers, patents, international academic conference talks/presentations, monographs, etc.) since your thesis proposal. Information on author list, title, journal name, volume, number, and pages shall be complete.}
 
 \begin{enumerate}[label={[\arabic*]}]
-    \item 成果1
-    \item 成果2
+  \item 成果1
+  \item 成果2
 \end{enumerate}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                    生成签字栏
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% 生成签字栏
 \makesignature
 
 \end{document}

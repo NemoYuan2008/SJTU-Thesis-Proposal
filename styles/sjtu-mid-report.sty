@@ -62,13 +62,12 @@
   },
 }
 
-% --- 参考文献环境定义（整体左缩进2字符）---
+% --- 参考文献环境定义---
 \defbibenvironment{bibliography}
   {\list{\printtext[labelnumberwidth]{\printfield{labelprefix}\printfield{labelnumber}}}
     {\setlength{\labelwidth}{\labelnumberwidth}%
       \setlength{\leftmargin}{\labelwidth}%
       \addtolength{\leftmargin}{\labelsep}%
-      \addtolength{\leftmargin}{2em}% 额外左缩进2字符
       \setlength{\itemsep}{\bibitemsep}%
       \setlength{\parsep}{\bibparsep}}}
   {\endlist}
